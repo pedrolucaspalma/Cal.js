@@ -1,3 +1,6 @@
+/*==================== CSS-RESET BEGIN ====================*/
+
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -48,8 +51,26 @@ table {
 }
 
 
-/*   CSS-RESET END   */
+/*==================== CSS-RESET END ====================*/
 
-.container{
-    background-color: #030d27;
+/* Global ==========================*/
+
+:root{
+	--dark-blue: #030d27;
+	--green:#3a7a4d;
+	--gray: #252926;
 }
+
+/* Main container, body ==========================*/
+html,body{
+	height:100%
+}
+
+.page-container{
+	height: 100vh;
+    background-color: #252926;
+	overflow: auto;
+
+}
+
+/* */
