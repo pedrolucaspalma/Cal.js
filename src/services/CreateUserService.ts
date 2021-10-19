@@ -1,7 +1,4 @@
-import { Request } from "express"
-
 const { PrismaClient } = require('@prisma/client')
-const newEvent = require('./CreateEventSet')
 
 const prisma = new PrismaClient()
 
@@ -40,9 +37,14 @@ class CreateUserService{
             data:{
                 name : name,
                 password: password,
-                email: email
+                email: email,
+                eventSet: {
+                    create:{
+                    }
+                }
             }
         })
+
         return newUser;
     }
 }
