@@ -1,7 +1,5 @@
-import {Request, response, Response} from "express"
+import {Request, Response} from "express"
 import { CreateUserService } from "../services/CreateUserService"
-
-const createUser =  require("../services/CreateUserService")
 
 class CreateUserController{
     async handle(req: Request, res: Response){
