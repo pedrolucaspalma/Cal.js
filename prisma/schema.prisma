@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider = "sqlite"
   url      = "file:./database.sqlite"
@@ -16,7 +13,6 @@ model User {
   email    String    @unique
   password String
   events Event[]
-
 }
 
 model Event {
