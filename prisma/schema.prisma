@@ -15,14 +15,8 @@ model User {
   name     String
   email    String    @unique
   password String
-  eventSet EventSet?
-}
+  events Event[]
 
-model EventSet {
-  id            Int     @id @default(autoincrement())
-  relatedUser   User    @relation(fields: [relatedUserId], references: [id])
-  relatedUserId Int     @unique
-  events        Event[]
 }
 
 model Event {
@@ -30,6 +24,6 @@ model Event {
   description   String
   beginningDate String
   endingDate    String
-  relatedSet    EventSet @relation(fields: [relatedSetId], references: [id])
-  relatedSetId  Int
+  relatedUser    User @relation(fields: [relatedUserId], references: [id])
+  relatedUserId  Int
 }

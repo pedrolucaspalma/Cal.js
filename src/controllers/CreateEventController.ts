@@ -3,11 +3,11 @@ import { CreateEventService } from "../services/CreateEventService"
 
 class CreateEventController{
     async handle(req: Request, res: Response){
-        const { description, beginningDate, endingDate, relatedSetId } = req.body
+        const { description, beginningDate, endingDate, relatedUserId } = req.body
 
         const createEventService = new CreateEventService();
 
-        const event = await createEventService.execute({ description, beginningDate, endingDate, relatedSetId })
+        const event = await createEventService.execute({ description, beginningDate, endingDate, relatedUserId })
 
         return res.json(event)
     }

@@ -8,7 +8,8 @@ interface IEventsRequest{
 
 class ListEventsService{
     async execute({relatedUserId}: IEventsRequest){
-        const eventSet = await prisma.eventSet.findUnique({
+        console.log(relatedUserId)
+        const eventSet = await prisma.event.findUnique({
             where: {
                 relatedUserId: relatedUserId
             }

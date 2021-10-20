@@ -6,18 +6,18 @@ interface IEventRequest{
     description: string;
     beginningDate: string;
     endingDate: string;
-    relatedSetId: Number;
+    relatedUserId: Number;
 }
 
 class CreateEventService{
-    async execute({description, beginningDate, endingDate, relatedSetId}: IEventRequest){
+    async execute({description, beginningDate, endingDate, relatedUserId}: IEventRequest){
         const newEvent = await prisma.event.create({
             data:{
                 description: description,
                 beginningDate: beginningDate,
                 endingDate: endingDate,
-                relatedSet: {
-                    connect: { id: relatedSetId }
+                relatedUser: {
+                    connect: { id: relatedUserId }
                 }
             }
         })

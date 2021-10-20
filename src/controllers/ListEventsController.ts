@@ -1,6 +1,5 @@
 import {Request, Response} from "express"
 import{ ListEventsService } from "../services/ListEventsService"
-import { CreateEventController } from "./CreateEventController"
 
 class ListEventsController {
     async handle(req: Request, res: Response){

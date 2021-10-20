@@ -41,13 +41,8 @@ class CreateUserService{
                 name : name,
                 password: passwordHash,
                 email: email,
-                eventSet: {
-                    create:{
-                    }
-                }
             }
         })
-
         return newUser;
     }
 }
