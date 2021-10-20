@@ -8,6 +8,7 @@ interface IDeleteRequest{
 
 class DeleteEventService{
     async execute(id: IDeleteRequest){
+
         const deleteEvent = await prisma.event.delete({
             where:{
                 id: id
