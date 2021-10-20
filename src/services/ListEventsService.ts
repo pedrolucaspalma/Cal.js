@@ -9,8 +9,6 @@ interface IEventsRequest{
 class ListEventsService{
 
     async execute(relatedUserId : IEventsRequest){
-        console.log(relatedUserId)
-
         const eventList = await prisma.event.findMany({
             where: {
                 relatedUserId: relatedUserId
