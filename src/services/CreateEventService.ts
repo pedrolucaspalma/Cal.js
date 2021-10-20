@@ -11,6 +11,11 @@ interface IEventRequest{
 
 class CreateEventService{
     async execute({description, beginningDate, endingDate, relatedUserId}: IEventRequest){
+
+        if(!description){
+                
+        }
+
         const newEvent = await prisma.event.create({
             data:{
                 description: description,
