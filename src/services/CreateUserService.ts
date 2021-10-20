@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client')
+const { hash } = require("bcryptjs")
 
 const prisma = new PrismaClient()
 
@@ -33,10 +34,12 @@ class CreateUserService{
             throw new Error("User already exists")
         }
 
+        const passwordHash = await hash(password, 8)
+
         const newUser = await prisma.user.create({
             data:{
                 name : name,
-                password: password,
+                password: passwordHash,
                 email: email,
                 eventSet: {
                     create:{
