@@ -11,12 +11,6 @@ interface IAuthenticateRequest {
     password: string;
 }
 
-// Verificar se o email existe (Armazenando o usuário encontrado em uma variável)
-    // Se não existir, retornar erro
-// Verificar se a senha passada bate com a senha do BD (comparar hashes)
-    // Se não bater, retornar erro
-// Gerar token
-
 class AuthenticateUserService{
     async execute({ email, password }:IAuthenticateRequest ){
         const user = await prisma.user.findUnique({
@@ -35,7 +29,7 @@ class AuthenticateUserService{
             throw new Error("Incorrect Email/Password")
         }
 
-        const token = sign({email: user.email}, "dfbbea8a502ceaebb95ad72d7b8866ac", {subject: user.id, expiresIn: "1d"});
+        const token = sign({email: user.email}, 'dfbbea8a502ceaebb95ad72d7b8866ac', {subject: user.email, expiresIn: "1d"});
         
         return token;
     }
