@@ -8,6 +8,7 @@ class DeleteEventController{
         const deleteEventService = new DeleteEventService();
 
         const deleteEvent = await deleteEventService.execute({id})
+        
         return res.json(deleteEvent)
     }
 }
