@@ -1,3 +1,5 @@
+import { eventNames } from "process"
+
 const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
@@ -7,14 +9,17 @@ interface IEventsRequest{
 }
 
 class ListEventsService{
-    async execute({relatedUserId}: IEventsRequest){
+
+    async execute(relatedUserId : IEventsRequest){
         console.log(relatedUserId)
-        const eventSet = await prisma.event.findUnique({
+
+        const eventList = await prisma.event.findMany({
             where: {
                 relatedUserId: relatedUserId
             }
         })
-        console.log(eventSet)
+
+        return eventList
     }
 }
 
