@@ -115,7 +115,7 @@ form{
 	margin-top: 5px;
 }
 
-#password-error{
+#password-error, #field-missing{
 	color: red;
 }
 /* */

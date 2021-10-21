@@ -2,6 +2,12 @@ const form = document.querySelector('#registration-form')
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
+    const fieldMissing = document.querySelector('#field-missing')
+    const passwordError = document.querySelector('#password-error')
+
+    fieldMissing.hidden = true
+    passwordError.hidden = true
+
     
     const formData = {
         name: form.elements.name.value,
@@ -10,18 +16,17 @@ form.addEventListener('submit', (e) => {
         passwordRepeat: form.elements.passwordRepeat.value
     }
 
-    if(!formData.email){
-        console.log("email vazio")
+    if(!formData.name | !formData.email | !formData.password){
+        fieldMissing.hidden = false
         return
     }
 
     if(formData.password != formData.passwordRepeat){
-        const passwordError = document.querySelector('#password-error')
         passwordError.hidden = false
         return
     }
 
-    // registerUser(formData)
+    registerUser(formData)
 })
 
 const registerUser = async (formData) => {
@@ -32,4 +37,10 @@ const registerUser = async (formData) => {
         },
         body: JSON.stringify(formData)
     });
+
+    // openPostRegistrationPage()
 }
+
+// const openPostRegistrationPage = () =>{
+
+// }
