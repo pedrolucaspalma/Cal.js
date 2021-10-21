@@ -1,2 +1,2 @@
 # Cal.js
-A personal calendar fullstack web app
+A personal events tracker fullstack web app
