@@ -2,32 +2,29 @@ const form = document.querySelector('#login-form')
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    
+    const fieldMissing = document.querySelector('#field-missing')
+    fieldMissing.hidden = true;
+
     const formData = {
         email: form.elements.email.value,
         password: form.elements.password.value,
     }
 
-    if(!formData.email){
-        console.log("email vazio")
+    if(!formData.email | !formData.password){
+        fieldMissing.hidden = false
         return
     }
 
-    if(formData.password != formData.passwordRepeat){
-        const passwordError = document.querySelector('#password-error')
-        passwordError.hidden = false
-        return
-    }
-
-    // registerUser(formData)
+    login(formData)
 })
 
-const registerUser = async (formData) => {
-    fetch('http://localhost:3000/users',{
+const login = async (formData) => {
+    fetch('http://localhost:3000/login',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
-    });
+    })
+    .then(res => res.json())
 }

@@ -66,6 +66,7 @@ html,body{
 	height:100%
 }
 
+/* Login and Registration ===========*/
 .page-container{
 	height: 100vh;
     background-color: var(--gray);
@@ -77,7 +78,7 @@ html,body{
 
 }
 
-.registration-container{
+.form-container{
 	height: 70vh;
 	width: 40vw;
 	background-color: var(--white);
@@ -87,9 +88,11 @@ html,body{
 	justify-content: center;
 }
 
-form{
+#registration-form, #login-form{
 	display: flex;
 	flex-direction: column;
+
+	width: 300px;
 }
 
 .title{
