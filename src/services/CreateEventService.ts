@@ -13,7 +13,13 @@ class CreateEventService{
     async execute({description, beginningDate, endingDate, relatedUserId}: IEventRequest){
 
         if(!description){
-                
+                throw new Error("Invalid event. Please fill all camps.")
+        }
+        if(!beginningDate){
+            throw new Error("Invalid event. Please fill all camps.")
+        }
+        if(!endingDate){
+            throw new Error("Invalid event. Please fill all camps.")
         }
 
         const newEvent = await prisma.event.create({
