@@ -53,7 +53,7 @@ table {
 
 /*==================== CSS-RESET END ====================*/
 
-/* Global ==========================*/
+/* Global or Common to all files ==========================*/
 
 :root{
 	--dark-blue: #030d27;
@@ -61,7 +61,6 @@ table {
 	--gray: #252926;
 }
 
-/* Main container, body ==========================*/
 html,body{
 	height:100%
 }
@@ -72,5 +71,10 @@ html,body{
 	overflow: auto;
 
 }
+
+/* Registration Page =============================*/
+
+
+
 
 /* */
