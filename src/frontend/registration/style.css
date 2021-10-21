@@ -102,19 +102,20 @@ form{
 }
 
 .elements-container{
-	display:block;
-	height: max-content;	
+	display:block;	
 }
 
 .element{
 	display: flex;
 	flex-direction: column;
-	height: 20%;
-
-	margin: 20px;
+	margin: 15px;
 }
 
 .element > input{
 	margin-top: 5px;
+}
+
+#password-error{
+	color: red;
 }
 /* */
