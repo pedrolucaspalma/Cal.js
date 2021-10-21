@@ -53,12 +53,13 @@ table {
 
 /*==================== CSS-RESET END ====================*/
 
-/* Global or Common to all files ==========================*/
+/* Global ==========================*/
 
 :root{
-	--dark-blue: #030d27;
-	--green:#3a7a4d;
-	--gray: #252926;
+	--dark-blue: #030d27; 
+	--green:#3a7a4d; 
+	--gray: #252926; /*all pages background color*/
+	--white: #d1d1d1;
 }
 
 html,body{
@@ -67,14 +68,53 @@ html,body{
 
 .page-container{
 	height: 100vh;
-    background-color: #252926;
+    background-color: var(--gray);
 	overflow: auto;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 }
 
-/* Registration Page =============================*/
+.registration-container{
+	height: 70vh;
+	width: 40vw;
+	background-color: var(--white);
+	border-radius: 10px;
 
+	display: flex;
+	justify-content: center;
+}
 
+form{
+	display: flex;
+	flex-direction: column;
+}
 
+.title{
+	display: block;
+}
 
+.title > h1{
+	font-size: 25px;
+	padding: 10px;
+}
+
+.elements-container{
+	display:block;
+	height: max-content;	
+}
+
+.element{
+	display: flex;
+	flex-direction: column;
+	height: 20%;
+
+	margin: 20px;
+}
+
+.element > input{
+	margin-top: 5px;
+}
 /* */

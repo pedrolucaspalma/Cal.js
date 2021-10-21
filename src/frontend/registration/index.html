@@ -5,12 +5,39 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Cal.js</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="page-container">
             <div class="registration-container">
-                
+                <form>
+                    <div class="title">
+                        <h1>Register an account</h1>
+                    </div>
+
+                    <div class="elements-container">
+                        <div class="element">
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="email" id="email">
+                        </div>
+                    
+                        <div class="element">
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" id="psw">
+                        </div>
+                    
+                        <div class="element">
+                            <label for="psw-repeat"><b>Repeat Password</b></label>
+                            <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="registerbtn">Register</button>
+                  
+                    <div class="sign-in-button">
+                      <p>Already have an account? <a href="../login/index.html">Sign in</a>.</p>
+                    </div>
+                  </form>
             </div>
         </div>
         
