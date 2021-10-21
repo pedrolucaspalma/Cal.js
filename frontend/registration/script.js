@@ -38,9 +38,9 @@ const registerUser = async (formData) => {
         body: JSON.stringify(formData)
     });
 
-    // openPostRegistrationPage()
+    openPostRegistrationPage()
 }
 
-// const openPostRegistrationPage = () =>{
-
-// }
+const openPostRegistrationPage = () =>{
+    window.location = "../login/index.html"
+}
