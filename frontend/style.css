@@ -118,7 +118,8 @@ html,body{
 	margin-top: 5px;
 }
 
-#password-error, #field-missing{
+/* Hidden H2 tags */
+#password-error, #field-missing, #already-registered{
 	color: red;
 }
 /* */

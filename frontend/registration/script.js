@@ -1,6 +1,6 @@
 const form = document.querySelector('#registration-form')
 
-form.addEventListener('submit', (e) => {
+const submitForm = form.addEventListener('submit', (e) => {
     e.preventDefault()
     const fieldMissing = document.querySelector('#field-missing')
     const passwordError = document.querySelector('#password-error')
@@ -30,17 +30,24 @@ form.addEventListener('submit', (e) => {
 })
 
 const registerUser = async (formData) => {
-    fetch('http://localhost:3000/users',{
+    const alreadyRegistered = document.querySelector('#already-registered')
+    alreadyRegistered.hidden = true
+
+    const res = await fetch('http://localhost:3000/users',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
-    });
-
-    openPostRegistrationPage()
+    })
+    if(res.status == 400){
+        alreadyRegistered.hidden = false
+        return
+    }
+    openLoginPage()
 }
 
-const openPostRegistrationPage = () =>{
+
+const openLoginPage = () =>{
     window.location = "../login/index.html"
 }

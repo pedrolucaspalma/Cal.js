@@ -15,6 +15,8 @@ form.addEventListener('submit', (e) => {
         return
     }
 
+    // console.log(formData)
+
     login(formData)
 })
 
@@ -28,3 +30,5 @@ const login = async (formData) => {
     })
     .then(res => res.json())
 }
+
+// console.log(login)
