@@ -36,6 +36,7 @@ Event entitie represents a single Event, and it has the following properties:
 ### Backend
 
 #### Intro
+
 The backend can be illustrated as:
 
 server.ts <-> routes.ts <-> someController.ts <-> someService.ts <-> Prisma Client <-> database.sqlite
@@ -61,5 +62,29 @@ The service may then use the Prisma Client to:
 The service will then return back to the controller whatever result they got from the operation (it could be either data or an Error object)
 
 The controller will then return back a response parsed as a JSON back to the frontend client, that I will approach in the following section.
+
+#### Request Example
+
+Lets see a `POST` Request example, that contains `/users` as its endpoint, `POST` as its HTTP method and the following body:
+
+    {
+        name: Pedro,
+        email: pedro@test.com,
+        password: 1234
+    }
+
+The server receives this request, and sends it to Router. In the router, `router.post("/users", createUserController.handle)` is used to call the createUserController to handle the request.
+
+Then, the controller receives `name`, `email` and `password` from the request body and stores each value inside a variable.Once it does that, it calls createUserService, and passes these variables as arguments.
+
+The service will then check these values to see if any of them came empty. If anything came empty, it throws an Error.
+
+If no Error is thrown, it uses Prisma client to method findUnique() to check if the table User has any User with the given `email`. If it does, it throws an Error.
+
+If no Error is thrown, it now makes an insertion query with Prisma Client method create() to create a new User, with the given `name`, `email` and `password`. Then it returns the created User to the controller, that returns it as a HTTP Response parsed as a JSON to the client.
+
+The other routes follow a similar approach to handle requests, described in the illustration:
+
+server.ts <-> routes.ts <-> someController.ts <-> someService.ts <-> Prisma Client <-> database.sqlite
 
 ### Frontend
