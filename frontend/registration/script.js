@@ -47,7 +47,6 @@ const registerUser = async (formData) => {
     openLoginPage()
 }
 
-
 const openLoginPage = () =>{
     window.location = "../login/index.html"
 }
