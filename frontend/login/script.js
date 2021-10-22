@@ -14,9 +14,7 @@ form.addEventListener('submit', (e) => {
         fieldMissing.hidden = false
         return
     }
-
-    // console.log(formData)
-
+    
     login(formData)
 })
 
