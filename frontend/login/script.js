@@ -33,13 +33,22 @@ const login = async (formData) => {
         return
     }
 
-    saveUserData(formData)
+    console.log(res.headers.values())
+
+    // const parsedRes = await res.json()
+
+    // console.log(parsedRes)
+
+    // console.log(res.headers)
+
 }
+
+// const userToken = ()=> {(console.log(login))}
+
+// userToken()
 
 const saveUserData = (formData) => {
     localStorage.userEmail = formData.email
-
-    console.log(localStorage.userEmail)
 
     openMainAppPage()
 }
