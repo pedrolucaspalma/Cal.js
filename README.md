@@ -18,6 +18,21 @@ For the data storage, I used Prisma framework to handle creation, insertion and 
 
 You can find the model used in for database in the `prisma.schema` file and the `database.sqlite` both located in `backend/prisma`folder.
 
+The model itself is pretty basic, containing only two related SQL entities: User and Event.
+
+User entitie represents a single User, and it has the following properties:
+* id [integer] Primary Key
+* name [varchar]
+* email [varchar]
+* password [varchar] -> This is stored as a encrypted hash in the database
+
+Event entitie represents a single Event, and it has the following properties:
+* id [integer] Primary Key
+* description [varchar]
+* begginingDate [varchar]
+* endingDate [varchar]
+* relatedUserId [integer] User Foreign Key
+
 ### Backend
 
 #### Intro
@@ -37,7 +52,14 @@ Routes.ts takes the request and calls the appropriate controller to handle the r
 In a general way, the controller is responsible for taking the data inside the request body, storing it inside some variables, and call the appropriate service while sending these variables to it as arguments.
 
 #### someService.ts
-The service will then do 
+The service may then use the Prisma Client to:
 
+* Insert data in the database (If POST method).
+* Retrieve data from the database (If GET method).
+* Delete data from the database (If DELETE method)
 
-Lets use `router.post("/users", createUserController.handle)`, for example. It receives a `name`, an `email` and a `password` in the request body, then parses it and stores each value inside a variable, and send them
+The service will then return back to the controller whatever result they got from the operation (it could be either data or an Error object)
+
+The controller will then return back a response parsed as a JSON back to the frontend client, that I will approach in the following section.
+
+### Frontend
