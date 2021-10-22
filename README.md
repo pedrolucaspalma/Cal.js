@@ -88,3 +88,7 @@ The other routes follow a similar approach to handle requests, described in the 
 server.ts <-> routes.ts <-> someController.ts <-> someService.ts <-> Prisma Client <-> database.sqlite
 
 ### Frontend
+
+#### Introduction
+
+The frontend of this application is composed of HTML pages, a single CSS stylesheet and Javascript files. Basically, the pages will send Requests to the backend via HTML tag `form` and Javascript fetch() API. 
