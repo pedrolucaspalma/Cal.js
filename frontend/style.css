@@ -119,7 +119,7 @@ html,body{
 }
 
 /* Hidden H2 tags */
-#password-error, #field-missing, #already-registered{
+.alert-message{
 	color: red;
 }
 /* */
