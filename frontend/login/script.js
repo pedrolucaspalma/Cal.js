@@ -21,14 +21,21 @@ form.addEventListener('submit', (e) => {
 })
 
 const login = async (formData) => {
-    fetch('http://localhost:3000/login',{
+    const incorrectUser = document.querySelector('#incorrect-credentials')
+
+    const res = await fetch('http://localhost:3000/login',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
     })
-    .then(res => res.json())
+    if(res.status == 400){
+        incorrectUser.hidden = false
+        return
+    }
 }
 
-// console.log(login)
+const openMainAppPage = ()=>{
+    window.location = "../main/index.html"
+}
