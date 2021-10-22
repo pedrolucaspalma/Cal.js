@@ -122,4 +122,21 @@ html,body{
 .alert-message{
 	color: red;
 }
-/* */
+
+/* Main Page =================== */
+
+.user-pannel-container, .user-events-container {
+	background-color: var(--white);
+}
+
+.user-pannel-container{
+	height: 70%;
+	width: 300px;
+	display: block;
+}
+
+.user-events-container{
+	height: 70%;
+	width: 300px;
+	display: block;
+}
