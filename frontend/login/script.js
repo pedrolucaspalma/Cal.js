@@ -14,7 +14,7 @@ form.addEventListener('submit', (e) => {
         fieldMissing.hidden = false
         return
     }
-    
+
     login(formData)
 })
 
@@ -32,8 +32,18 @@ const login = async (formData) => {
         incorrectUser.hidden = false
         return
     }
+
+    saveUserData(formData)
 }
 
-const openMainAppPage = ()=>{
+const saveUserData = (formData) => {
+    localStorage.userEmail = formData.email
+
+    console.log(localStorage.userEmail)
+
+    openMainAppPage()
+}
+
+const openMainAppPage = () => {
     window.location = "../main/index.html"
 }
