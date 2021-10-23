@@ -1,5 +1,5 @@
 const eventsList = document.querySelector(".activities-list")
-const userEventsStorage = localStorage.userEvents
+let eventsListStorage = []
 
 const userId = {
     relatedUserId: localStorage.userId
@@ -26,7 +26,7 @@ const insertUserEventsToEventsList = getUserEvents(userId).then((userEvents)=>{
             endingDate: userEvents[i].endingDate
         }
 
-        pushEventToStorage(Event)
+        pushEventToArray(Event)
 
         const newListItem = createNewListItem()
 
@@ -86,24 +86,16 @@ const createNewRemoveButton = ()=>{
     return newButtonElement
 }
 
-const pushEventToStorage = (userEvent)=>{
-    userEventsStorage.push(userEvent)
+const pushEventToArray = (userEvent)=>{
+    eventsListStorage.push(userEvent)
 }
-
-// const parseDateString = (string) =>{
-//     for(let i = 0; i < string.length; i++){
-//         if(i = 9){
-//             string.slice
-//         }
-//     }
-// }
 
 insertUserEventsToEventsList
 
 
 
-
 const logout = () => {
-  localStorage.userEmail = "";
+  localStorage.userName = "";
+  localStorage.userId = "";
   window.location = "../login/index.html";
 };

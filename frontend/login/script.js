@@ -34,14 +34,17 @@ const login = async (formData) => {
   }
 
   const body = await res.json();
-  const userId = body.id;
 
-  saveLoggedUser(userId);
+  const user = {
+    id: body.id,
+    name: body.name
+  }
+  saveLoggedUser(user);
 };
 
-const saveLoggedUser = (userId) => {
-  localStorage.userId = userId;
-
+const saveLoggedUser = (user) => {
+  localStorage.userName = user.name;
+  localStorage.userId = user.id;
   openMainAppPage();
 };
 
