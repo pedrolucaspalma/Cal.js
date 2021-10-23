@@ -58,7 +58,7 @@ table {
 :root{
 	--dark-blue: #030d27; 
 	--green:#3a7a4d; 
-	--gray: #252926; /*all pages background color*/
+	--gray: #cacaca; /*all pages background color*/
 	--white: #cacaca;
 	--logout-red: #e26b7f;
 	--light-gray: #969cb3;
@@ -185,7 +185,6 @@ html,body{
 }
 
 
-
 table th{
 	color: var(--light-gray);
 	opacity: 0.6;
@@ -194,4 +193,22 @@ table th{
 .action-button{
 	background-color: var(--logout-red);
 	text-decoration: none;
+}
+
+.modal-overlay.active{
+	opacity: 1;
+	visibility: visible;
+}
+
+.modal-overlay{
+	width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	opacity: 0;
+	visibility: hidden;
 }
