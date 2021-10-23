@@ -1,16 +1,16 @@
-import { Request, Response } from "express"
-import{ ListEventsService } from "../services/ListEventsService"
+import { Request, Response } from "express";
+import { ListEventsService } from "../services/ListEventsService";
 
 class ListEventsController {
-    async handle(req: Request, res: Response){
-        const { relatedUserId } = req.body
+  async handle(req: Request, res: Response) {
+    const { relatedUserId } = req.body;
 
-        const listEventsService = new ListEventsService()
+    const listEventsService = new ListEventsService();
 
-        const eventList = await listEventsService.execute(relatedUserId)
+    const eventList = await listEventsService.execute(relatedUserId);
 
-        return res.json(eventList)
-    }
+    return res.json(eventList);
+  }
 }
 
-export { ListEventsController }
+export { ListEventsController };

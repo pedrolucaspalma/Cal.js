@@ -1,16 +1,21 @@
-import {Request, Response} from "express"
-import { CreateEventService } from "../services/CreateEventService"
+import { Request, Response } from "express";
+import { CreateEventService } from "../services/CreateEventService";
 
-class CreateEventController{
-    async handle(req: Request, res: Response){
-        const { description, beginningDate, endingDate, relatedUserId } = req.body
+class CreateEventController {
+  async handle(req: Request, res: Response) {
+    const { description, beginningDate, endingDate, relatedUserId } = req.body;
 
-        const createEventService = new CreateEventService();
+    const createEventService = new CreateEventService();
 
-        const event = await createEventService.execute({ description, beginningDate, endingDate, relatedUserId })
+    const event = await createEventService.execute({
+      description,
+      beginningDate,
+      endingDate,
+      relatedUserId,
+    });
 
-        return res.json(event)
-    }
+    return res.json(event);
+  }
 }
 
-export { CreateEventController }
+export { CreateEventController };

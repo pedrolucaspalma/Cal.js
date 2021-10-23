@@ -1,22 +1,21 @@
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require("@prisma/client");
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-interface IEventsRequest{
-    relatedUserId: Number
+interface IEventsRequest {
+  relatedUserId: Number;
 }
 
-class ListEventsService{
+class ListEventsService {
+  async execute(relatedUserId: IEventsRequest) {
+    const eventList = await prisma.event.findMany({
+      where: {
+        relatedUserId: relatedUserId,
+      },
+    });
 
-    async execute(relatedUserId : IEventsRequest){
-        const eventList = await prisma.event.findMany({
-            where: {
-                relatedUserId: relatedUserId
-            }
-        })
-
-        return eventList
-    }
+    return eventList;
+  }
 }
 
-export { ListEventsService }
+export { ListEventsService };
