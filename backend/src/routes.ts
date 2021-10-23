@@ -17,9 +17,9 @@ const deleteEventController = new DeleteEventController();
 
 router.post("/users", createUserController.handle);
 router.post("/events", createEventController.handle);
+router.post("/userevents", listEventsController.handle);
 router.post("/login", authenticateUserController.handle);
 
-router.get("/events", listEventsController.handle);
 
 router.delete("/events", deleteEventController.handle);
 

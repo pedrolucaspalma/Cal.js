@@ -134,18 +134,25 @@ table {
 
 /* Global ==========================*/
 
+*{
+  box-sizing: border-box;
+}
+
 :root {
   --bg: #b9c7d3;
+  --fg: #516478;
+  --logout: #c9426b;
   --card: #f0f4f7;
   --card-border: #95a7b4;
   --activities-list-item-bg: #ffffff;
   --activities-list-item-border: #b5c4cf;
   --activities-list-item-dates: #8da3b1;
   --edit-button: #95d7cf;
-  --edit-button-border: #69c0b6;
+  --edit-button-border: #5aa69d;
   --remove-button: #e4a2ae;
   --remove-button-border: #b37a84;
-  --fg: #29363b;
+  --add-button: #90c1e0;
+  --add-button-border: #69a3c7;
 }
 
 h2,p{
@@ -219,13 +226,13 @@ body {
 /* Main Page =================== */
 
 .user-pannel-container {
-  display: relative;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   height: 100%;
 
   height: 70%;
   width: 600px;
-  margin-right: auto;
-  margin-left: auto;
 
   background-color: var(--card);
   border: 1px solid var(--card-border);
@@ -256,7 +263,7 @@ body {
   text-align: center;
   text-decoration: none;
 
-  background-color: var(--logout-red);
+  color: var(--logout);
 }
 
 #user-pannel-container-header > #logout:hover {
@@ -317,11 +324,17 @@ body {
 
 .add-button{
   position: absolute;
-  width: 30px;
-  height: 30px;
+  right: 20px;
+  bottom: 20px;
 
-  right: -10px;
-  background-color: black;
+  padding: 12px 15px;
+
+  background-color: var(--add-button);
+  border: 1px solid var(--add-button-border);
+}
+
+.add-button:hover{
+  cursor: pointer;
 }
 
 .modal-overlay.active {
