@@ -59,11 +59,14 @@ table {
 	--dark-blue: #030d27; 
 	--green:#3a7a4d; 
 	--gray: #252926; /*all pages background color*/
-	--white: #d1d1d1;
+	--white: #cacaca;
+
+	--main-page-margin-value: 100px;
 }
 
 html,body{
-	height:100%
+	height:100%;
+	font-family: 'Poppins', 'sans-serif';
 }
 
 /* Login and Registration ===========*/
@@ -127,16 +130,43 @@ html,body{
 
 .user-pannel-container, .user-events-container {
 	background-color: var(--white);
+	border-radius: 10px;
 }
 
 .user-pannel-container{
 	height: 70%;
 	width: 300px;
+	float: left;
+
+	display: flex;
+	flex-direction: column;
+
+	margin-right: var(--main-page-margin-value)
+}
+
+.user-pannel-container > .main-page-greeting{
 	display: block;
+	
+	margin: 10px auto 10px auto;
+
+	font-size: 25px;
+}
+
+.user-pannel-container > .button{
+	display: block;
+
+	margin: 10px auto 10px auto;
+	height: 50px;
+	padding: 0;
+}
+
+.user-pannel-container > .button:hover{
+
 }
 
 .user-events-container{
 	height: 70%;
-	width: 300px;
-	display: block;
+	width: 400px;
+	float: right;
+	margin-left: var(--main-page-margin-value)
 }
