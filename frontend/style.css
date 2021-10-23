@@ -190,3 +190,8 @@ table th{
 	color: var(--light-gray);
 	opacity: 0.6;
 }
+
+.action-button{
+	background-color: var(--logout-red);
+	text-decoration: none;
+}
