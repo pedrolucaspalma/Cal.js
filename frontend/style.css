@@ -61,8 +61,7 @@ table {
 	--gray: #252926; /*all pages background color*/
 	--white: #cacaca;
 	--logout-red: #e26b7f;
-
-	--main-page-margin-value: auto;
+	--light-gray: #969cb3;
 }
 
 html,body{
@@ -70,7 +69,6 @@ html,body{
 	font-family: 'Poppins', 'sans-serif';
 }
 
-/* Login and Registration ===========*/
 .page-container{
 	height: 100vh;
     background-color: var(--gray);
@@ -81,6 +79,8 @@ html,body{
 	align-items: center;
 
 }
+
+/* Login and Registration ===========*/
 
 .form-container{
 	height: 70vh;
@@ -129,65 +129,64 @@ html,body{
 
 /* Main Page =================== */
 
-.user-pannel-container, .user-events-container {
+.user-pannel-container{
+	display: block;
+
+	height: 70%;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+
 	background-color: var(--white);
 	border-radius: 10px;
 }
 
-.user-pannel-container{
-	height: 70%;
-	width: 300px;
-	float: left;
+#user-pannel-container-header{
+	display: block;
+	padding-top: 15px;
 
-	display: flex;
-	flex-direction: column;
-
-	margin-right: var(--main-page-margin-value);
-	margin-left: var(--main-page-margin-value);
+	width: 900px;
 }
 
-.user-pannel-container > .main-page-greeting{
+#user-pannel-container-header > #user-pannel-greeting{
 	display: block;
 	
-	margin: 10px auto 10px auto;
+	margin-left: auto;
+	margin-right: auto;
 
 	font-size: 25px;
 }
 
-.user-pannel-container > .action-button{
-	display: inline;
-	float: none;
+#user-pannel-container-header > #logout {
+	display: block;
 	
 	margin: 10px auto 10px auto;
-	width: 55%;
-	height: 50px;
+	/* padding: 2px 10px 4px 10px; */
+	padding: none;
+	width: 70px;
+	height: 30px;
 	
-	background-color: white;
 	border-radius: 10px;
-
-	line-height: 50px;
-	text-align: center;
-}
-
-.user-pannel-container > #logout {
-	background-color: var(--logout-red);
+	
+	line-height: 30px;
 	color: white;
-
-	margin-top: 80px ;
+	text-align: center;
+	text-decoration: none;
+	
+	background-color: var(--logout-red);
 }
 
-.user-pannel-container > .action-button:hover{
+#user-pannel-container-header > #logout:hover{
 	cursor: pointer;
 }
 
-.user-events-container{
-	height: 70%;
-	width: 400px;
-	float: right;
-	margin-right: var(--main-page-margin-value);
-	margin-left: var(--main-page-margin-value);
+#user-pannel-container-header > #user-pannel-greeting{
+	position:absolute;
 }
 
-#events-table{
-	
+
+
+table th{
+	color: var(--light-gray);
+	opacity: 0.6;
 }

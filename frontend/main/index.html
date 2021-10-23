@@ -14,30 +14,33 @@
         <div class="page-container">
 
                 <section class="user-pannel-container">
-                    <h2 class="main-page-greeting">Hello ...</h2>
-                    <a class="action-button" id="list-events">List my events</a>
-                    <a class="action-button" id="add-new-event">Add a new event</a>
-                    <a class="action-button" id="update-an-event">Update a event</a>
-                    <a class="action-button" id="delete-an-event">Delete a event</a>
-                    <a class="action-button" id="logout" href="#" onclick="logout()">Logout</a>
+
+                    <div id="user-pannel-container-header">
+                        <h2 id="user-pannel-greeting">Hello ...</h2>
+                        <a class="action-button" id="logout" href="#" onclick="logout()">Logout</a>
+                    </div>
+
+                    <div id="user-pannel-container-table">
+                        <h2 class="event-table-title">Your events:</h2>
+    
+                        <table id="events-table">
+                            <tr>
+                                <th class="description">Description</th>
+                                <th class="beginning">Beginning</th>
+                                <th class="ending">Ending</th>
+                            </tr>
+                            <tbody>
+    
+                            </tbody>
+                        </table>
+                    </div>
+
                 </section>
-
-                <section class="user-events-container">
-                    <h2 class="main-page-greeting">Your events</h2>
-
-                    <table id="events-table">
-                        <thead>
-                            <tr>Description</tr>
-                            <tr>Beginning</tr>
-                            <tr>Ending</tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-
-                </section>
-
+<!-- 
+    <a class="action-button" id="list-events">List my events</a>
+    <a class="action-button" id="add-new-event">Add a new event</a>
+    <a class="action-button" id="update-an-event">Update a event</a>
+    <a class="action-button" id="delete-an-event">Delete a event</a> -->
 
             </div>
         </div>
