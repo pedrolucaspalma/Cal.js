@@ -92,7 +92,15 @@ const pushEventToArray = (userEvent)=>{
 
 insertUserEventsToEventsList
 
+const openModal = () => {
+    const modal = document.querySelector('.modal-overlay')
+    modal.classList.add('active')
+}
 
+const closeModal = () =>{
+    const modal = document.querySelector('.modal-overlay')
+    modal.classList.remove('active')
+}
 
 const logout = () => {
   localStorage.userName = "";
