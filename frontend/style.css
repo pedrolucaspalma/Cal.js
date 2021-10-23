@@ -135,12 +135,21 @@ table {
 /* Global ==========================*/
 
 :root {
-  --dark-blue: #030d27;
-  --green: #3a7a4d;
-  --gray: #252926; /*all pages background color*/
-  --white: #cacaca;
-  --logout-red: #e26b7f;
-  --light-gray: #969cb3;
+  --bg: #b9c7d3;
+  --card: #f0f4f7;
+  --card-border: #95a7b4;
+  --activities-list-item-bg: #ffffff;
+  --activities-list-item-border: #b5c4cf;
+  --activities-list-item-dates: #8da3b1;
+  --edit-button: #95d7cf;
+  --edit-button-border: #69c0b6;
+  --remove-button: #e4a2ae;
+  --remove-button-border: #b37a84;
+  --fg: #29363b;
+}
+
+h2,p{
+  color: var(--fg);
 }
 
 html,
@@ -155,7 +164,7 @@ body {
   align-items: center;
 
   height: 100vh;
-  background-color: var(--gray);
+  background-color: var(--bg);
   overflow: auto;
 }
 
@@ -164,7 +173,7 @@ body {
 .form-container {
   height: 70vh;
   width: 400px;
-  background-color: var(--white);
+  background-color: var(--card);
   border-radius: 10px;
 
   display: flex;
@@ -210,27 +219,28 @@ body {
 /* Main Page =================== */
 
 .user-pannel-container {
-  display: block;
+  display: relative;
+  height: 100%;
 
   height: 70%;
   width: 600px;
   margin-right: auto;
   margin-left: auto;
 
-  background-color: var(--white);
-  border-radius: 10px;
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
 }
 
 #user-pannel-container-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
+  padding: 30px 50px;
 }
 
 #user-pannel-container-header > #user-pannel-greeting {
   display: block;
-
+  font-weight: bold;
   font-size: 25px;
 }
 
@@ -243,7 +253,6 @@ body {
   border-radius: 10px;
 
   line-height: 30px;
-  color: white;
   text-align: center;
   text-decoration: none;
 
@@ -254,14 +263,65 @@ body {
   cursor: pointer;
 }
 
-table th {
-  color: var(--light-gray);
-  opacity: 0.6;
+.activities-list-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
 }
 
-.action-button {
-  background-color: var(--logout-red);
-  text-decoration: none;
+.activities-list{
+  display: flex;
+  flex-direction: column;
+  padding: 0px 30px;
+
+  height:100%;
+}
+
+.activities-list-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: var(--activities-list-item-bg);
+
+  border: 1px solid var(--activities-list-item-border);
+}
+
+.description, .beginning, .ending{
+  width: 150px;
+}
+
+.beginning, .ending{
+  color: var(--activities-list-item-dates);
+}
+
+.edit-button, .remove-button {
+  padding: 0;
+  width: 20px;
+  height: 20px;
+
+  border-radius: 0;
+}
+
+.edit-button{
+  border: 1px solid var(--edit-button-border);
+  background-color: var(--edit-button);
+}
+
+.remove-button{
+  border: 1px solid var(--remove-button-border);
+  background-color: var(--remove-button);
+}
+
+.add-button{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+
+  right: -10px;
+  background-color: black;
 }
 
 .modal-overlay.active {

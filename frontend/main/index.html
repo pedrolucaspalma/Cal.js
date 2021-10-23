@@ -13,61 +13,39 @@
     <body>
         <div class="page-container">
                 <section class="user-pannel-container">
-
                     <div id="user-pannel-container-header">
                         <h2 id="user-pannel-greeting">Hello ...</h2>
                         <a class="action-button" id="logout" href="#" onclick="logout()">Logout</a>
                     </div>
 
-                    <div id="user-pannel-container-table">
-                        <h2 class="event-table-title">Your events:</h2>
-    
-                        <table id="events-table">
-                            <thead>
-                                <tr>
-                                    <th class="description">Description</th>
-                                    <th class="beginning">Beginning</th>
-                                    <th class="ending">Ending</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="description">Meeting</td>
-                                    <td class="beginning">23/10/2021 | 10:00</td>
-                                    <td class="ending">23/10/2021 | 11:00</td>
-                                    <td>
-                                        <a href="#" class="action-button" onclick="">Remove</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="action-button" onclick="">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="description">Work out</td>
-                                    <td class="beginning">23/10/2021 | 11:00</td>
-                                    <td class="ending">23/10/2021 | 12:00</td>
-                                    <td>
-                                        <a href="#" class="action-button" onclick="">Remove</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="action-button" onclick="">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="description">Dinner</td>
-                                    <td class="beginning">23/10/2021 | 18:00</td>
-                                    <td class="ending">23/10/2021 | 19:00</td>
-                                    <td>
-                                        <a href="#" class="action-button" onclick="">Remove</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="action-button" onclick="">Edit</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <div class="activities-list-container">
+                        
+                        <ul class="activities-list">
 
+                            <li class="activities-list-item">
+                                <p class="description">Meeting</p>
+                                <p class="beginning">23/10/2021 | 10:00</p>
+                                <p class="ending">23;10/2021 | 11:00</p>
+                                <button href="#" class="edit-button" onclick=""></button>
+                                <button href="#" class="remove-button" onclick=""></button>
+                            </li>
+                            <li class="activities-list-item">
+                                <p class="description">Work out</p>
+                                <p class="beginning">23/10/2021 | 11:00</p>
+                                <p class="ending">23;10/2021 | 12:00</p>
+                                <button href="#" class="edit-button" onclick=""></button>
+                                <button href="#" class="remove-button" onclick=""></button>
+                            </li>
+                            <li class="activities-list-item">
+                                <p class="description">Dinner</p>
+                                <p class="beginning">23/10/2021 | 18:00</p>
+                                <p class="ending">23/10/2021 | 19:00</p>
+                                <button href="#" class="edit-button" onclick=""></button>
+                                <button href="#" class="remove-button" onclick=""></button>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="add-button"></button>
                 </section>
                 <div class="modal-overlay">
                     <div class="modal">
