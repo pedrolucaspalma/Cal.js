@@ -32,13 +32,17 @@ const login = async (formData) => {
         incorrectUser.hidden = false
         return
     }
-    saveLoggedUser(formData)
+
+    const body = await res.json()
+    const userId = body.id
+
+    saveLoggedUser(userId)
 }
 
 
-const saveLoggedUser = (formData) => {
-    localStorage.userEmail = formData.email
-    console.log(localStorage.userEmail)
+const saveLoggedUser = (userId) => {
+    localStorage.userId = userId
+    
     openMainAppPage()
 }
 
