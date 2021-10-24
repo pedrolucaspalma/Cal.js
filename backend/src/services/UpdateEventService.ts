@@ -14,11 +14,6 @@ interface IEventRequest {
 
 class UpdateEventService {
     async execute({description, beginningDate, endingDate, relatedUserId, eventId}: IEventRequest){
-        console.log(description)
-        console.log(eventId)
-        console.log(beginningDate)
-        console.log(endingDate)
-        console.log(relatedUserId)
 
         const updatedEvent = await prisma.event.update({
             where:{
