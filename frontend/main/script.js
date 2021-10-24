@@ -15,6 +15,19 @@ const appendUserNameToGreeting = () => {
 appendUserNameToGreeting();
 
 // ____Server Requests Methods
+const sendEventInsertionRequest = async (Event) =>{
+    const res = await fetch("http://localhost:3000/events", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Event)
+    })
+
+    const insertedEvent = await res.json();
+
+    console.log(insertedEvent)
+}
 
 const requestUserEvents = async (userId) => {
   const res = await fetch(
@@ -148,7 +161,7 @@ const editEvent = (
 };
 
 const addEvent = (formData) => {
-    
+    sendEventInsertionRequest(formData)
 };
 
 insertUserEventsToEventsList;
@@ -197,6 +210,7 @@ const submitFormForInsertion = (modal) => {
         description: form.elements.description.value,
         beginningDate: form.elements.eventBeginning.value,
         endingDate: form.elements.eventEnding.value,
+        relatedUserId: localStorage.userId
       };
       if (
         !formData.description |

@@ -3,7 +3,10 @@ import { CreateEventService } from "../services/CreateEventService";
 
 class CreateEventController {
   async handle(req: Request, res: Response) {
-    const { description, beginningDate, endingDate, relatedUserId } = req.body;
+
+    const { description, beginningDate, endingDate} = req.body;
+
+    const relatedUserId = parseInt(req.body.relatedUserId)
 
     const createEventService = new CreateEventService();
 
