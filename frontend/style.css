@@ -333,7 +333,7 @@ body {
   border: 1px solid var(--add-button-border);
 }
 
-.add-button:hover{
+.add-button:hover, .edit-button:hover, .remove-button:hover{
   cursor: pointer;
 }
 
@@ -353,4 +353,14 @@ body {
   justify-content: center;
   opacity: 0;
   visibility: hidden;
+}
+
+.modal{
+  height: 70vh;
+  width: 400px;
+  background-color: var(--card);
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
 }

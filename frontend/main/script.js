@@ -90,6 +90,13 @@ const pushEventToArray = (userEvent)=>{
     eventsListStorage.push(userEvent)
 }
 
+const appendUserNameToGreeting = () =>{
+   const h2 = document.querySelector('#user-pannel-greeting')
+   h2.innerHTML = "Hello " + localStorage.userName
+}
+
+appendUserNameToGreeting()
+
 insertUserEventsToEventsList
 
 const openModal = () => {
