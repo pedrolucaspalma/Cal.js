@@ -5,10 +5,10 @@ const userId = {
     relatedUserId: localStorage.userId
 }
 
-const getUserEvents = async (userId) => {
+const requestUserEvents = async (userId) => {
   const res = await fetch("http://localhost:3000/userevents", {
     method: "POST",
-    body: JSON.stringify(userId),
+    body: JSON.stringify(userId)
   });
 
   const userEvents = await res.json();
@@ -16,7 +16,7 @@ const getUserEvents = async (userId) => {
   return userEvents;
 };
 
-const insertUserEventsToEventsList = getUserEvents(userId).then((userEvents)=>{
+const insertUserEventsToEventsList = requestUserEvents(userId).then((userEvents)=>{
     for(let i = 0; i < userEvents.length; i++){
 
         const Event = {
@@ -40,7 +40,7 @@ const insertUserEventsToEventsList = getUserEvents(userId).then((userEvents)=>{
         newPtagForBeginningDate.innerHTML = Event.beginningDate
         newPtagForEndingDate.innerHTML = Event.endingDate
 
-        newEditButton.setAttribute('onclick', `editEvent(${Event.id})`)
+        newEditButton.setAttribute('onclick', `editEvent("${Event.id}", "${Event.description}", "${Event.beginningDate}", "${Event.endingDate}")`)
         newRemoveButton.setAttribute('onclick', `removeEvent(${Event.id})`)
 
         newListItem.appendChild(newPtagForDescription)
@@ -100,14 +100,32 @@ const appendUserNameToGreeting = () =>{
 
 appendUserNameToGreeting()
 
-const removeEvent = (eventId)=>{
-    console.log(eventId)
-
-
+const sendDeleteRequest = async (Event)=>{
+    const res = await fetch(`http://localhost:3000/events/${Event.id}`,{
+        method: "DELETE",
+        body: JSON.stringify(Event)
+    })
+    const deletedEvent = await res.json()
+    return deletedEvent
 }
 
-const editEvent = (eventId)=>{
-    console.log(eventId)
+const removeEvent = (eventId)=>{
+    const Event = {
+        id: eventId
+    }
+    sendDeleteRequest(Event).then((deletedEvent) =>{
+        location.reload()
+    })}
+
+const editEvent = (eventId, eventDescription, eventBeginningDate, eventEndingDate)=>{
+    const userEvent = {
+        id: eventId,
+        description: eventDescription,
+        beginningDate: eventBeginningDate,
+        endingDate: eventEndingDate
+    }
+
+    console.log(userEvent)
 }
 
 insertUserEventsToEventsList

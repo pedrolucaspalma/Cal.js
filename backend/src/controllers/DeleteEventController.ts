@@ -3,7 +3,7 @@ import { DeleteEventService } from "../services/DeleteEventService";
 
 class DeleteEventController {
   async handle(req: Request, res: Response) {
-    const { id } = req.body;
+    const  id: number  = parseInt(req.params['id'])
 
     const deleteEventService = new DeleteEventService();
 

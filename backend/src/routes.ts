@@ -21,6 +21,6 @@ router.post("/userevents", listEventsController.handle);
 router.post("/login", authenticateUserController.handle);
 
 
-router.delete("/events", deleteEventController.handle);
+router.delete("/events/:id", deleteEventController.handle);
 
 export { router };
