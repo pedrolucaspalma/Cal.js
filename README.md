@@ -91,4 +91,14 @@ server.ts <-> routes.ts <-> someController.ts <-> someService.ts <-> Prisma Clie
 
 #### Introduction
 
-The frontend of this application is composed of HTML pages, a single CSS stylesheet and Javascript files. Basically, the pages will send Requests to the backend via HTML tag `form` and Javascript fetch() API. 
+The frontend of this application is composed of HTML pages, a single CSS stylesheet and Javascript files. Basically, the pages will send Requests to the backend via HTML tag `form` and Javascript fetch() API.
+
+Throughout the application there will be several frontend data verifications before sending the request to the server. When something is wrong with the data that the user wants to send (IE: Not all fields were filled) it will set the equivalent `.alert-message` tag (identified by a specific ID) `visibility` CSS property to `visible`, explaining the error.
+
+It may happen that the data sent from the user is valid, but the server throws an Error (IE: User tries to log in with unregistered credentials). The error thrown to the client will then activate the mecanism described above, changing an `.alert-message` visibility.
+
+##### Registration
+
+The user registration is made by sending the main form element values to the server, using a POST request (endpoint `/users`) through Javascript `fetch()` API.
+
+On this step we 
