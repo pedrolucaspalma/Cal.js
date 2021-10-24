@@ -17,12 +17,15 @@ appendUserNameToGreeting();
 // ____Server Requests Methods
 
 const requestUserEvents = async (userId) => {
-  const res = await fetch(`http://localhost:3000/userevents/${userId.relatedUserId}`, {
-    method: "GET",
-  });
+  const res = await fetch(
+    `http://localhost:3000/userevents/${userId.relatedUserId}`,
+    {
+      method: "GET",
+    }
+  );
 
   const userEvents = await res.json();
-  
+
   return userEvents;
 };
 
@@ -118,7 +121,7 @@ const pushEventToArray = (userEvent) => {
   eventsListStorage.push(userEvent);
 };
 
-// ____Calling ServerRequest methods with Event data
+// ____Calling Server Request methods with Event data
 const removeEvent = (eventId) => {
   const Event = {
     id: eventId,
@@ -144,26 +147,48 @@ const editEvent = (
   openModalForEdit(userEvent);
 };
 
-const addEvent = () => {
+const addEvent = (formData) => {
+    
 };
 
 insertUserEventsToEventsList;
 
 // ____Modal Manipulation Methods
 
+const openModalForInsertion = () => {
+  const modal = document.querySelector(".modal-overlay");
+  modal.classList.add("active");
+
+  const form = modal.querySelector(".modal-form");
+  const submitForm = form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fieldMissing = form.querySelector("#field-missing");
+
+    fieldMissing.hidden = true;
+
+    const formData = {
+      description: form.elements.description.value,
+      beginningDate: form.elements.eventBeginning.value,
+      endingDate: form.elements.eventEnding.value,
+    };
+    if (
+      !formData.description |
+      !formData.beginningDate |
+      !formData.endingDate
+    ) {
+      fieldMissing.hidden = false;
+      return;
+    }
+
+    addEvent(formData)
+  });
+};
+
 const openModalForEdition = (userEvent) => {
   const modal = document.querySelector(".modal-overlay");
   modal.classList.add("active");
 
   insertUserEventDatainModal(userEvent, modal);
-};
-
-const openModalForInsertion = () => {
-  const modal = document.querySelector(".modal-overlay");
-  modal.classList.add("active");
-
-  submitButton = modal.querySelector(".submit-button")
-  submitButton.setAttribute('onclick', "addEvent")
 };
 
 const insertUserEventDatainModal = (userEvent, modal) => {
@@ -181,28 +206,29 @@ const closeModal = () => {
   modal.classList.remove("active");
 };
 
-const submitForm = () => {
-  const submitForm = form.addEventListener("submit", (e) => {
+// ______ Submiting Modal form for either insertion or addition of events
+const submitFormForInsertion = () => {
+  const form = document.querySelector("modal-form");
+
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
     // Tratativa de erro de campo vazio
-
-    console.log(form);
   });
 };
 
 // ______ Logout
 
-const clearEventList =() =>{
-    document.querySelectorAll('.activities-list-item').forEach((e)=>{
-        e.remove()
-    })
-}
+const clearEventList = () => {
+  document.querySelectorAll(".activities-list-item").forEach((e) => {
+    e.remove();
+  });
+};
 
 const logout = () => {
   localStorage.userName = "";
   localStorage.userId = "";
 
-  clearEventList()
+  clearEventList();
 
   window.location = "../login/index.html";
 };
