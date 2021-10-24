@@ -5,8 +5,6 @@ class ListEventsController {
   async handle(req: Request, res: Response) {
     const relatedUserId: number = parseInt(req.params['relatedUserId'])
 
-    console.log(relatedUserId)
-
     const listEventsService = new ListEventsService();
 
     const eventList = await listEventsService.execute(relatedUserId);
