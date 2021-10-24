@@ -159,29 +159,7 @@ const openModalForInsertion = () => {
   const modal = document.querySelector(".modal-overlay");
   modal.classList.add("active");
 
-  const form = modal.querySelector(".modal-form");
-  const submitForm = form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const fieldMissing = form.querySelector("#field-missing");
-
-    fieldMissing.hidden = true;
-
-    const formData = {
-      description: form.elements.description.value,
-      beginningDate: form.elements.eventBeginning.value,
-      endingDate: form.elements.eventEnding.value,
-    };
-    if (
-      !formData.description |
-      !formData.beginningDate |
-      !formData.endingDate
-    ) {
-      fieldMissing.hidden = false;
-      return;
-    }
-
-    addEvent(formData)
-  });
+  submitFormForInsertion(modal)
 };
 
 const openModalForEdition = (userEvent) => {
@@ -207,14 +185,30 @@ const closeModal = () => {
 };
 
 // ______ Submiting Modal form for either insertion or addition of events
-const submitFormForInsertion = () => {
-  const form = document.querySelector("modal-form");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    // Tratativa de erro de campo vazio
-  });
-};
+const submitFormForInsertion = (modal) => {
+    const form = modal.querySelector(".modal-form");
+    const submitForm = form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fieldMissing = form.querySelector("#field-missing");
+  
+      fieldMissing.hidden = true;
+  
+      const formData = {
+        description: form.elements.description.value,
+        beginningDate: form.elements.eventBeginning.value,
+        endingDate: form.elements.eventEnding.value,
+      };
+      if (
+        !formData.description |
+        !formData.beginningDate |
+        !formData.endingDate
+      ) {
+        fieldMissing.hidden = false;
+        return;
+      }
+      addEvent(formData)
+    });
+}
 
 // ______ Logout
 
