@@ -40,6 +40,9 @@ const insertUserEventsToEventsList = getUserEvents(userId).then((userEvents)=>{
         newPtagForBeginningDate.innerHTML = Event.beginningDate
         newPtagForEndingDate.innerHTML = Event.endingDate
 
+        newEditButton.setAttribute('onclick', `editEvent(${Event.id})`)
+        newRemoveButton.setAttribute('onclick', `removeEvent(${Event.id})`)
+
         newListItem.appendChild(newPtagForDescription)
         newListItem.appendChild(newPtagForBeginningDate)
         newListItem.appendChild(newPtagForEndingDate)
@@ -64,13 +67,13 @@ const createNewDescription = ()=>{
 
 const createNewBeginningDate = ()=>{
     const newPelement = document.createElement('p')
-    newPelement.classList.add('beginningDate')
+    newPelement.classList.add('beginning')
     return newPelement
 }
 
 const createNewEndingDate = ()=>{
     const newPelement = document.createElement('p')
-    newPelement.classList.add('endingDate')
+    newPelement.classList.add('ending')
     return newPelement
 }
 
@@ -96,6 +99,16 @@ const appendUserNameToGreeting = () =>{
 }
 
 appendUserNameToGreeting()
+
+const removeEvent = (eventId)=>{
+    console.log(eventId)
+
+
+}
+
+const editEvent = (eventId)=>{
+    console.log(eventId)
+}
 
 insertUserEventsToEventsList
 
