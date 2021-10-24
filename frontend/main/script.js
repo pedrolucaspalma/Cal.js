@@ -72,8 +72,6 @@ const insertUserEventsToEventsList = requestUserEvents(userId).then(
         endingDate: userEvents[i].endingDate,
       };
 
-      pushEventToArray(Event);
-
       const newListItem = createNewListItem();
 
       const newPtagForDescription = createNewDescription();

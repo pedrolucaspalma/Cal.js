@@ -114,4 +114,8 @@ Later on I pretend to insert JWT authentication to this. It should work like thi
 - Once the token is received on the client via the server response, it is stored in localStorage or cookies.
 - A new middleware will be included (ensureUserAuthenticated). ensureUserAuthenticated will be added in each existing route that uses a main functionality (Creating new events, editing events and listing events), being called before the main functionality controller. 
 - This middleware will get a JWT from the request sent by the client and check if the token is valid. If it isn't, it throws an error that should redirect the client to the login page. 
-- If it is valid, it calls the next controller to receive handle the request. 
+- If it is valid, it calls the next controller to receive handle the request.
+
+##### Main Page
+
+- After the login, the storage
