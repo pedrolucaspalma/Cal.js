@@ -204,7 +204,6 @@ const closeModal = () => {
 const submitFormForInsertion = (modal) => {
   const form = modal.querySelector(".modal-form");
   const submitForm = form.addEventListener("submit", (e) => {
-    e.preventDefault();
     const fieldMissing = form.querySelector("#field-missing");
 
     fieldMissing.hidden = true;
