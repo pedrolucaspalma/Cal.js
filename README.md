@@ -101,14 +101,17 @@ It may happen that the data sent from the user is valid, but the server throws a
 
 The user registration is made by sending the main form element values to the server, using a `POST` request (endpoint `/users`) through Javascript `fetch()` API.
 
-One thing to mention here is that even though the password is stored a hash in the server, **it still is sent as plain text in the request body**. This is a security flaw, and should be addressed in the future, so **don't send personnal information in this registration**.
+One thing to mention here is that even though the password is stored a hash in the server and sent through a POST body (not appearing in the request URL), **it still is sent as plain text in the request body**. This is a security flaw, and should be addressed in the future, so until then **don't send personnal/sensitive information in this registration**.
 
 Once the request is submited and no errors are thrown, the user is redirected to Login page.
 
 ##### Login
 
-User login is made in a similar way, in the sense that form element values are sent using `POST` request (endpoint `/login`). In this case, the server sends the client a response containing the user's Id on the database, that is stored in localStorage for future usage. If no errors are thrown, the user is redirected to Main page.
+User login is made in a similar way, in the sense that form element values are sent using `POST` request (endpoint `/login`). In this case, if the login is succssesfull the server sends the client a response containing the user's Id on the database, that is stored in localStorage for future usage. If no errors are thrown, the user is redirected to Main page.
 
-
-
-Later on I pretend to insert JWT authentication to this, where a token will be sent via the server response, stored in localStorage or cookies, and sent alongside each other request the user may do.
+Later on I pretend to insert JWT authentication to this. It should work like this:
+- The `/login` route controller/service will now also return a JWT on the response body.
+- Once the token is received on the client via the server response, it is stored in localStorage or cookies.
+- A new middleware will be included (ensureUserAuthenticated). ensureUserAuthenticated will be added in each existing route that uses a main functionality (Creating new events, editing events and listing events), being called before the main functionality controller. 
+- This middleware will get a JWT from the request sent by the client and check if the token is valid. If it isn't, it throws an error that should redirect the client to the login page. 
+- If it is valid, it calls the next controller to receive handle the request. 
