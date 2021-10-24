@@ -79,7 +79,7 @@ const insertUserEventsToEventsList = requestUserEvents(userId).then(
 
       newEditButton.setAttribute(
         "onclick",
-        `editEvent("${Event.id}", "${Event.description}", "${Event.beginningDate}", "${Event.endingDate}", "${localStorage.userId}")`
+        `openModalForEdition("${Event.id}", "${Event.description}", "${Event.beginningDate}", "${Event.endingDate}", "${localStorage.userId}")`
       );
       newRemoveButton.setAttribute("onclick", `removeEvent(${Event.id})`);
 
@@ -135,6 +135,7 @@ const pushEventToArray = (userEvent) => {
 };
 
 // ____Calling Server Request methods with Event data
+
 const removeEvent = (eventId) => {
   const Event = {
     id: eventId,
@@ -144,27 +145,15 @@ const removeEvent = (eventId) => {
   });
 };
 
-const editEvent = (
-  eventId,
-  eventDescription,
-  eventBeginningDate,
-  eventEndingDate,
-  relatedUserId
-) => {
-  const userEvent = {
-    id: eventId,
-    description: eventDescription,
-    beginningDate: eventBeginningDate,
-    endingDate: eventEndingDate,
-    relatedUserId: relatedUserId
-  };
+const editEvent = (userEvent) =>{
+  console.log(userEvent)
+  // sendEventEditionRequest(userEvent)
+}
 
-  openModalForEdition(userEvent);
-};
+
 
 const addEvent = (formData) => {
-  console.log(formData);
-  // sendEventInsertionRequest(formData)
+  sendEventInsertionRequest(formData)
 };
 
 insertUserEventsToEventsList;
@@ -178,7 +167,15 @@ const openModalForInsertion = () => {
   submitFormForInsertion(modal);
 };
 
-const openModalForEdition = (userEvent) => {
+const openModalForEdition = (eventId, eventDescription, beginningDate, endingDate, relatedUserId) => {
+  const userEvent = {
+    eventId: eventId,
+    eventDescription: eventDescription,
+    beginningDate: beginningDate,
+    endingDate: endingDate,
+    relatedUserId: relatedUserId
+  }
+
   const modal = document.querySelector(".modal-overlay");
   modal.classList.add("active");
 
@@ -228,6 +225,37 @@ const submitFormForInsertion = (modal) => {
     addEvent(formData);
   });
 };
+
+const submitFormForEdition = (modal) =>{
+  
+  const form = modal.querySelector(".modal-form");
+  const submitForm = form.addEventListener("submit", (e) => {
+    
+    const fieldMissing = form.querySelector("#field-missing");
+
+    fieldMissing.hidden = true;
+
+    const formData = {
+      description: form.elements.description.value,
+      beginningDate: form.elements.eventBeginning.value,
+      endingDate: form.elements.eventEnding.value,
+      relatedUserId: localStorage.userId,
+    };
+    if (
+      !formData.description |
+      !formData.beginningDate |
+      !formData.endingDate
+    ) {
+      fieldMissing.hidden = false;
+      return;
+    }
+
+    console.log(formData)
+
+    editEvent(formData);
+  });
+}
+  
 
 // ______ Logout
 
