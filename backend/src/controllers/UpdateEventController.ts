@@ -13,7 +13,7 @@ class UpdateEventController{
 
         const updatedEvent = await updateEventService.execute({description,beginningDate,endingDate,relatedUserId,eventId});
         
-        console.log(updatedEvent)
+        return res.json(updatedEvent)
     }
 
 }
