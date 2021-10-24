@@ -1,5 +1,4 @@
 const eventsList = document.querySelector(".activities-list");
-let eventsListStorage = [];
 
 const userId = {
   relatedUserId: localStorage.userId,
@@ -138,10 +137,6 @@ const createNewRemoveButton = () => {
   const newButtonElement = document.createElement("button");
   newButtonElement.classList.add("remove-button");
   return newButtonElement;
-};
-
-const pushEventToArray = (userEvent) => {
-  eventsListStorage.push(userEvent);
 };
 
 // ____Calling Server Request methods with Event data
