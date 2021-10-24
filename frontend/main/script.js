@@ -25,8 +25,6 @@ const sendEventInsertionRequest = async (Event) => {
   });
 
   const insertedEvent = await res.json();
-
-  console.log(insertedEvent);
 };
 
 const requestUserEvents = async (userId) => {
@@ -50,6 +48,18 @@ const sendDeleteRequest = async (Event) => {
   const deletedEvent = await res.json();
   return deletedEvent;
 };
+
+const sendEventEditionRequest = async(Event)=>{
+  const res = await fetch("http://localhost:3000/updateevents", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Event),
+  });
+
+  const insertedEvent = await res.json();
+}
 
 // ____Appending Events to EventList on page Reload
 
@@ -146,11 +156,8 @@ const removeEvent = (eventId) => {
 };
 
 const editEvent = (userEvent) =>{
-  console.log(userEvent)
-  // sendEventEditionRequest(userEvent)
+  sendEventEditionRequest(userEvent)
 }
-
-
 
 const addEvent = (formData) => {
   sendEventInsertionRequest(formData)
@@ -178,8 +185,9 @@ const openModalForEdition = (eventId, eventDescription, beginningDate, endingDat
 
   const modal = document.querySelector(".modal-overlay");
   modal.classList.add("active");
-
+  
   insertUserEventDataInModal(userEvent, modal);
+  submitFormForEdition(modal, userEvent.eventId)
 };
 
 const insertUserEventDataInModal = (userEvent, modal) => {
@@ -187,7 +195,7 @@ const insertUserEventDataInModal = (userEvent, modal) => {
   eventBeginningDate = modal.querySelector("#eventBeginning");
   eventEndingDate = modal.querySelector("#eventEnding");
 
-  eventDescription.value = userEvent.description;
+  eventDescription.value = userEvent.eventDescription;
   eventBeginningDate.value = userEvent.beginningDate;
   eventEndingDate.value = userEvent.endingDate;
 
@@ -226,7 +234,7 @@ const submitFormForInsertion = (modal) => {
   });
 };
 
-const submitFormForEdition = (modal) =>{
+const submitFormForEdition = (modal, eventId) =>{
   
   const form = modal.querySelector(".modal-form");
   const submitForm = form.addEventListener("submit", (e) => {
@@ -236,6 +244,7 @@ const submitFormForEdition = (modal) =>{
     fieldMissing.hidden = true;
 
     const formData = {
+      eventId: eventId,
       description: form.elements.description.value,
       beginningDate: form.elements.eventBeginning.value,
       endingDate: form.elements.eventEnding.value,
@@ -250,13 +259,10 @@ const submitFormForEdition = (modal) =>{
       return;
     }
 
-    console.log(formData)
-
     editEvent(formData);
   });
 }
   
-
 // ______ Logout
 
 const clearEventList = () => {

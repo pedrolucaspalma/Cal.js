@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction, response } from "express";
-// import "express-async-errors";
+import "express-async-errors";
 
 const cors = require("cors");
 

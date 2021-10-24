@@ -3,6 +3,7 @@ import { UpdateEventService } from "../services/UpdateEventService"
 
 class UpdateEventController{
     async handle(req: Request, res: Response){
+        console.log(req.body)
         const { description, beginningDate, endingDate } = req.body;
 
         const relatedUserId = parseInt(req.body.relatedUserId)
