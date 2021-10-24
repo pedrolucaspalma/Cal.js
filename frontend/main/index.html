@@ -24,13 +24,30 @@
 
                         </ul>
                     </div>
-                    <button class="add-button" onclick="openModal()">+ Add new event</button>
+                    <button class="add-button" onclick="  openModalForInsertion();
+                    ">+ Add new event</button>
                 </section>
                 <div class="modal-overlay">
-                    <div class="modal">
-                        <div id="form">
-                            <form action="" onsubmit ="submitModalContent(editedEvent)">
-
+                    <div class="modal-card">
+                        <div class="modal-form-container">
+                            <form class="modal-form">
+                                <h2 class="title">Insert Event Information</h2>
+                                <div class="elements-container">
+                                    <div class="element">
+                                        <label for="description">Event Description</label>
+                                        <input type="text" placeholder="Insert event description" name="description" id="description">
+                                    </div>
+                                    <div class="element">
+                                        <label for="eventBeginning">When will your event begin?</label>
+                                        <input type="datetime-local" name="eventBeginning" id="eventBeginning">
+                                    </div>
+                                    <div class="element">
+                                        <label for="eventEnding">When will your event begin?</label>
+                                        <input type="datetime-local" name="eventEnding" id="eventEnding">
+                                    </div>
+                                </div>
+                                <button onclick="closeModal()" class="cancel-button">Cancel</button>
+                                <input type="submit" class="submit-button"></button><!--!!!!!!!!!!!!!!!!!!!!!!!-->
                             </form>
                         </div>
                     </div>

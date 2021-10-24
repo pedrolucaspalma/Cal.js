@@ -1,147 +1,208 @@
-const eventsList = document.querySelector(".activities-list")
-let eventsListStorage = []
+const eventsList = document.querySelector(".activities-list");
+let eventsListStorage = [];
 
 const userId = {
-    relatedUserId: localStorage.userId
-}
+  relatedUserId: localStorage.userId,
+};
+
+// ____Insert user name to greeting H2 tag
+
+const appendUserNameToGreeting = () => {
+  const h2 = document.querySelector("#user-pannel-greeting");
+  h2.innerHTML = "Hello " + localStorage.userName;
+};
+
+appendUserNameToGreeting();
+
+// ____Server Requests Methods
 
 const requestUserEvents = async (userId) => {
-  const res = await fetch("http://localhost:3000/userevents", {
-    method: "POST",
-    body: JSON.stringify(userId)
+  const res = await fetch(`http://localhost:3000/userevents/${userId.relatedUserId}`, {
+    method: "GET",
   });
 
   const userEvents = await res.json();
-
+  
   return userEvents;
 };
 
-const insertUserEventsToEventsList = requestUserEvents(userId).then((userEvents)=>{
-    for(let i = 0; i < userEvents.length; i++){
+const sendDeleteRequest = async (Event) => {
+  const res = await fetch(`http://localhost:3000/events/${Event.id}`, {
+    method: "DELETE",
+    body: JSON.stringify(Event),
+  });
+  const deletedEvent = await res.json();
+  return deletedEvent;
+};
 
-        const Event = {
-            id: userEvents[i].id,
-            description: userEvents[i].description,
-            beginningDate: userEvents[i].beginningDate,
-            endingDate: userEvents[i].endingDate
-        }
+// ____Appending Events to EventList on page Reload
 
-        pushEventToArray(Event)
+const insertUserEventsToEventsList = requestUserEvents(userId).then(
+  (userEvents) => {
+    for (let i = 0; i < userEvents.length; i++) {
+      const Event = {
+        id: userEvents[i].id,
+        description: userEvents[i].description,
+        beginningDate: userEvents[i].beginningDate,
+        endingDate: userEvents[i].endingDate,
+      };
 
-        const newListItem = createNewListItem()
+      pushEventToArray(Event);
 
-        const newPtagForDescription = createNewDescription()
-        const newPtagForBeginningDate = createNewBeginningDate()
-        const newPtagForEndingDate = createNewEndingDate()
-        const newEditButton = createNewEditButton()
-        const newRemoveButton = createNewRemoveButton()
+      const newListItem = createNewListItem();
 
-        newPtagForDescription.innerHTML = Event.description
-        newPtagForBeginningDate.innerHTML = Event.beginningDate
-        newPtagForEndingDate.innerHTML = Event.endingDate
+      const newPtagForDescription = createNewDescription();
+      const newPtagForBeginningDate = createNewBeginningDate();
+      const newPtagForEndingDate = createNewEndingDate();
+      const newEditButton = createNewEditButton();
+      const newRemoveButton = createNewRemoveButton();
 
-        newEditButton.setAttribute('onclick', `editEvent("${Event.id}", "${Event.description}", "${Event.beginningDate}", "${Event.endingDate}")`)
-        newRemoveButton.setAttribute('onclick', `removeEvent(${Event.id})`)
+      newPtagForDescription.innerHTML = Event.description;
+      newPtagForBeginningDate.innerHTML = Event.beginningDate;
+      newPtagForEndingDate.innerHTML = Event.endingDate;
 
-        newListItem.appendChild(newPtagForDescription)
-        newListItem.appendChild(newPtagForBeginningDate)
-        newListItem.appendChild(newPtagForEndingDate)
-        newListItem.appendChild(newEditButton)
-        newListItem.appendChild(newRemoveButton)
+      newEditButton.setAttribute(
+        "onclick",
+        `editEvent("${Event.id}", "${Event.description}", "${Event.beginningDate}", "${Event.endingDate}")`
+      );
+      newRemoveButton.setAttribute("onclick", `removeEvent(${Event.id})`);
 
-        eventsList.appendChild(newListItem)
+      newListItem.appendChild(newPtagForDescription);
+      newListItem.appendChild(newPtagForBeginningDate);
+      newListItem.appendChild(newPtagForEndingDate);
+      newListItem.appendChild(newEditButton);
+      newListItem.appendChild(newRemoveButton);
+
+      eventsList.appendChild(newListItem);
     }
-})
+  }
+);
 
-const createNewListItem = ()=>{
-    const newListItem = document.createElement('li')
-    newListItem.classList.add('activities-list-item')
-    return newListItem
-}
+const createNewListItem = () => {
+  const newListItem = document.createElement("li");
+  newListItem.classList.add("activities-list-item");
+  return newListItem;
+};
 
-const createNewDescription = ()=>{
-    const newPelement = document.createElement('p')
-    newPelement.classList.add('description')
-    return newPelement
-}
+const createNewDescription = () => {
+  const newPelement = document.createElement("p");
+  newPelement.classList.add("description");
+  return newPelement;
+};
 
-const createNewBeginningDate = ()=>{
-    const newPelement = document.createElement('p')
-    newPelement.classList.add('beginning')
-    return newPelement
-}
+const createNewBeginningDate = () => {
+  const newPelement = document.createElement("p");
+  newPelement.classList.add("beginning");
+  return newPelement;
+};
 
-const createNewEndingDate = ()=>{
-    const newPelement = document.createElement('p')
-    newPelement.classList.add('ending')
-    return newPelement
-}
+const createNewEndingDate = () => {
+  const newPelement = document.createElement("p");
+  newPelement.classList.add("ending");
+  return newPelement;
+};
 
-const createNewEditButton = ()=>{
-    const newButtonElement = document.createElement('button')
-    newButtonElement.classList.add("edit-button")
-    return newButtonElement
-}
+const createNewEditButton = () => {
+  const newButtonElement = document.createElement("button");
+  newButtonElement.classList.add("edit-button");
+  return newButtonElement;
+};
 
-const createNewRemoveButton = ()=>{
-    const newButtonElement = document.createElement('button')
-    newButtonElement.classList.add("remove-button")
-    return newButtonElement
-}
+const createNewRemoveButton = () => {
+  const newButtonElement = document.createElement("button");
+  newButtonElement.classList.add("remove-button");
+  return newButtonElement;
+};
 
-const pushEventToArray = (userEvent)=>{
-    eventsListStorage.push(userEvent)
-}
+const pushEventToArray = (userEvent) => {
+  eventsListStorage.push(userEvent);
+};
 
-const appendUserNameToGreeting = () =>{
-   const h2 = document.querySelector('#user-pannel-greeting')
-   h2.innerHTML = "Hello " + localStorage.userName
-}
+// ____Calling ServerRequest methods with Event data
+const removeEvent = (eventId) => {
+  const Event = {
+    id: eventId,
+  };
+  sendDeleteRequest(Event).then((deletedEvent) => {
+    location.reload();
+  });
+};
 
-appendUserNameToGreeting()
+const editEvent = (
+  eventId,
+  eventDescription,
+  eventBeginningDate,
+  eventEndingDate
+) => {
+  const userEvent = {
+    id: eventId,
+    description: eventDescription,
+    beginningDate: eventBeginningDate,
+    endingDate: eventEndingDate,
+  };
 
-const sendDeleteRequest = async (Event)=>{
-    const res = await fetch(`http://localhost:3000/events/${Event.id}`,{
-        method: "DELETE",
-        body: JSON.stringify(Event)
+  openModalForEdit(userEvent);
+};
+
+const addEvent = () => {
+};
+
+insertUserEventsToEventsList;
+
+// ____Modal Manipulation Methods
+
+const openModalForEdition = (userEvent) => {
+  const modal = document.querySelector(".modal-overlay");
+  modal.classList.add("active");
+
+  insertUserEventDatainModal(userEvent, modal);
+};
+
+const openModalForInsertion = () => {
+  const modal = document.querySelector(".modal-overlay");
+  modal.classList.add("active");
+
+  submitButton = modal.querySelector(".submit-button")
+  submitButton.setAttribute('onclick', "addEvent")
+};
+
+const insertUserEventDatainModal = (userEvent, modal) => {
+  eventDescription = modal.querySelector("#description");
+  eventBeginningDate = modal.querySelector("#eventBeginning");
+  eventEndingDate = modal.querySelector("#eventEnding");
+
+  eventDescription.value = userEvent.description;
+  eventBeginningDate.value = userEvent.beginningDate;
+  eventEndingDate.value = userEvent.endingDate;
+};
+
+const closeModal = () => {
+  const modal = document.querySelector(".modal-overlay");
+  modal.classList.remove("active");
+};
+
+const submitForm = () => {
+  const submitForm = form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    // Tratativa de erro de campo vazio
+
+    console.log(form);
+  });
+};
+
+// ______ Logout
+
+const clearEventList =() =>{
+    document.querySelectorAll('.activities-list-item').forEach((e)=>{
+        e.remove()
     })
-    const deletedEvent = await res.json()
-    return deletedEvent
-}
-
-const removeEvent = (eventId)=>{
-    const Event = {
-        id: eventId
-    }
-    sendDeleteRequest(Event).then((deletedEvent) =>{
-        location.reload()
-    })}
-
-const editEvent = (eventId, eventDescription, eventBeginningDate, eventEndingDate)=>{
-    const userEvent = {
-        id: eventId,
-        description: eventDescription,
-        beginningDate: eventBeginningDate,
-        endingDate: eventEndingDate
-    }
-
-    console.log(userEvent)
-}
-
-insertUserEventsToEventsList
-
-const openModal = () => {
-    const modal = document.querySelector('.modal-overlay')
-    modal.classList.add('active')
-}
-
-const closeModal = () =>{
-    const modal = document.querySelector('.modal-overlay')
-    modal.classList.remove('active')
 }
 
 const logout = () => {
   localStorage.userName = "";
   localStorage.userId = "";
+
+  clearEventList()
+
   window.location = "../login/index.html";
 };

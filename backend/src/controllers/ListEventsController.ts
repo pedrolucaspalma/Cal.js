@@ -3,7 +3,9 @@ import { ListEventsService } from "../services/ListEventsService";
 
 class ListEventsController {
   async handle(req: Request, res: Response) {
-    const { relatedUserId } = req.body;
+    const relatedUserId: number = parseInt(req.params['relatedUserId'])
+
+    console.log(relatedUserId)
 
     const listEventsService = new ListEventsService();
 
