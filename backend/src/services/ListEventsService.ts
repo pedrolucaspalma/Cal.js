@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 
 class ListEventsService {
   async execute(relatedUserId: number) {
-    console.log(relatedUserId)
 
     const eventList = await prisma.event.findMany({
       where: {
