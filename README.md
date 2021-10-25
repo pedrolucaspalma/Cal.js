@@ -120,4 +120,13 @@ Later on I pretend to insert JWT authentication to this. It should work like thi
 
 ##### Main Page
 
-- After the login, the storage
+###### On Login/Logout
+
+- After the login, the app will have the user's Name and database ID stored on localStorage.
+    - The user's name will only be used to be inserted in the greeting `h2` tag.
+    - The user's database ID will be sent on every request to the server with the `GET` method and `/userevents/` endpoint, being passed on the URL. I will explain more of this request on the next section.
+- The logout button simply clears the user's data on localStorage and redirect's him back to login page.
+
+###### Listing events
+
+Event listing is made by sending a request to the server with the `GET` method and `/userevents/` endpoint, being passed on the URL. This returns a response containing a list of events and each events respective ID.

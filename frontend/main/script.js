@@ -208,12 +208,14 @@ const insertUserEventDataInModal = (userEvent, modal) => {
 const closeModal = () => {
   const modal = document.querySelector(".modal-overlay");
   modal.classList.remove("active");
+  const form = modal.querySelector(".modal-form")
+  form.reset()
 };
 
 // ______ Submiting Modal form for either insertion or addition of events
 const submitFormForInsertion = (modal) => {
   const form = modal.querySelector(".modal-form");
-  const submitForm = form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", (e) => {
     const fieldMissing = form.querySelector("#field-missing");
 
     fieldMissing.hidden = true;
@@ -239,7 +241,7 @@ const submitFormForInsertion = (modal) => {
 const submitFormForEdition = (modal, eventId) =>{
   
   const form = modal.querySelector(".modal-form");
-  const submitForm = form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", (e) => {
     
     const fieldMissing = form.querySelector("#field-missing");
 
