@@ -129,4 +129,9 @@ Later on I pretend to insert JWT authentication to this. It should work like thi
 
 ###### Listing events
 
-Event listing is made by sending a request to the server with the `GET` method and `/userevents/` endpoint, being passed on the URL. This returns a response containing a list of events and each events respective ID.
+Event listing is made by sending a request to the server with the `GET` method and `/userevents/` endpoint, being passed on the URL. This returns a response containing a list of events and each events respective ID. The events are then appended to the event list with Javascript DOM, and the page is reloaded.
+
+
+###### Adding a new event
+
+When the user clicks on the "Add new event" button, it calls a `openModalForInsertion()` function that opens up a modal containing a form. On submition, the data the form will be sent to a 
