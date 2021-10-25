@@ -7,8 +7,10 @@ A personal events tracker fullstack web app
 3. Inside Cal.js folder, run `cd backend` to change to backend folder.
 4. Inside backend folder, run `npm install` to install the project dependencies.
 5. Still inside the backend folder, run `npm run dev` to initialize the server.
-6. Now, run `cd ../frontend/registration` to change to and open the index.html with your preferred browser 
+6. Now, run `cd ../frontend/registration` to change to and open the index.html with Google Chrome/Brave.  
 7. And now you can begin using the application from there! 
+
+OBS: Browser support is limited only to Chrome or Brave. Won't work on Firefox and I haven't tested on other browsers by now. 
 
 ## How does it work?
 
