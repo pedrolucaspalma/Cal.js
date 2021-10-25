@@ -13,7 +13,7 @@ const appendUserNameToGreeting = () => {
 
 appendUserNameToGreeting();
 
-// ____Server Requests Methods
+// ____Server Requests with fetch() API Methods
 const sendEventInsertionRequest = async (Event) => {
   const res = await fetch("http://localhost:3000/events", {
     method: "POST",
@@ -80,9 +80,12 @@ const insertUserEventsToEventsList = requestUserEvents(userId).then(
       const newEditButton = createNewEditButton();
       const newRemoveButton = createNewRemoveButton();
 
+      newPtagForBeginningDate.setAttribute("value", Event.beginningDate)
+      newPtagForEndingDate.setAttribute("value", Event.endingDate)
+
       newPtagForDescription.innerHTML = Event.description;
-      newPtagForBeginningDate.innerHTML = Event.beginningDate;
-      newPtagForEndingDate.innerHTML = Event.endingDate;
+      newPtagForBeginningDate.innerHTML = parseDate(Event.beginningDate);
+      newPtagForEndingDate.innerHTML = parseDate(Event.endingDate);
 
       newEditButton.setAttribute(
         "onclick",
@@ -100,6 +103,13 @@ const insertUserEventsToEventsList = requestUserEvents(userId).then(
     }
   }
 );
+
+const parseDate = (dateString) =>{
+  const date = new Date(dateString + "Z")
+
+  let parsedDate = date.toUTCString()
+  return parsedDate
+}
 
 const createNewListItem = () => {
   const newListItem = document.createElement("li");
