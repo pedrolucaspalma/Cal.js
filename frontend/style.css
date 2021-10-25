@@ -141,8 +141,10 @@ table {
 :root {
   --bg: #b9c7d3;
   --fg: #516478;
-  --logout: #c9426b;
+  --reg-login-fields:#1e2d3d;
+  --logout: #c9426b; 
   --card: #f0f4f7;
+  --input-field: #95a7b4;
   --card-border: #95a7b4;
   --activities-list-item-bg: #ffffff;
   --activities-list-item-border: #b5c4cf;
@@ -157,6 +159,10 @@ table {
 
 h2,p{
   color: var(--fg);
+}
+
+h1, b{
+  color: var(--reg-login-fields)
 }
 
 html,
@@ -218,6 +224,9 @@ a{
 
 .element > input {
   margin-top: 5px;
+  padding-left: 7px;
+
+  border: 1px solid var(--input-field);
 }
 
 .submit-button{
