@@ -129,11 +129,14 @@ Later on I pretend to insert JWT authentication to this. It should work like thi
 
 ###### Listing events
 
-Event listing is made by sending a request to the server with the `GET` method and `/userevents/` endpoint, being passed on the URL. This returns a response containing a list of events and each events respective ID. The events are then appended to the event list with Javascript DOM, and the page is reloaded.
+Event listing is made by sending a request to the server with the `GET` method and `/userevents/` endpoint, being passed on the URL. This returns a response containing a list of events and each events respective ID. The events are then appended to the event list with Javascript DOM, and the page is reloaded. 
 
+Alongside each event there is a green and a red button. The edit button contains a `onclick` attribute with a call to the `openModalForEdition` function, and passing all the event's information (including its Id) as paramaters. The remove button calls has a `onclick` attribute with a call to the `removeEvent`, passing only the event Id as a argument.
 
 ###### Adding a new event
 
-When the user clicks on the "Add new event" button, it calls a `openModalForInsertion()` function that simply opens up a modal containing a form. It also calls a `submitFormForInsertion()`, that adds uses `addEventListener` to the form and waits for the user to click on the green "Submit" button on the modal. On click, it collects all the information put on the form by the user, stores in the `formData` object and passes this object to `addEvent()` as a paramater. Add event simply passes this object again to the `sendEventInsertionRequest()`, that uses `fetch()` to send the object containing the new event to the server to handle with the `createEventController`. The page is then reloaded, and the user can now see the new event on the event list.
+When the user clicks on the "Add new event" button, it calls the `openModalForInsertion()` function that simply opens up a modal containing a form. It also calls a `submitFormForInsertion()`, that adds uses `addEventListener` to the form and waits for the user to click on the green "Submit" button on the modal. On click, it collects all the information put on the form by the user, stores in the `formData` object and passes this object to `addEvent()` as a paramater. Add event simply passes this object again to the `sendEventInsertionRequest()`, that uses `fetch()` to send the object containing the new event to the server to handle with the `createEventController`. The page is then reloaded, and the user can now see the new event on the event list.
 
 ###### Editing an existing event
+
+When the user clicks on the green button next to a event, it calls the `openModalForEdition()` function that opens the modal containing the form and passes the event current information to the form input fields, then calls the `submitFormForEdition()`. This function also uses `addEventListener()` to the form to await for the user to click on the green "Submit" button on the modal. From here on it will act on a similar way as to adding a new event, with the difference being that `updateEventController` is used to handle the request 
