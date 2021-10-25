@@ -359,6 +359,8 @@ a{
   cursor: pointer;
 }
 
+/* Modal ===============*/
+
 .modal-overlay.active {
   opacity: 1;
   visibility: visible;
@@ -378,6 +380,10 @@ a{
 }
 
 .modal-card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   height: 50vh;
   width: 550px;
   background-color: var(--card);
@@ -385,11 +391,56 @@ a{
 
   padding: 20px;
 
+}
+
+/* modal-form ============*/
+
+.modal-form{
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .modal-form > .title{
   font-size: 25px;
   padding-bottom: 10px;
+}
+
+.modal-form > .elements-container > .element > label, .modal-form > .elements-container > .element > input{
+  color: var(--reg-login-fields)
+}
+
+/*modal-form-footer ============*/
+
+.modal-form-footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-form-footer-buttons{
+  margin-top: 20px;
+}
+
+.modal-form-footer-buttons > .cancel-button{
+  background-color: var(--remove-button);
+  border: 1px solid var(--remove-button-border);
+  width: 90px;
+  height: 30px;
+
+  margin-right: 10px;
+}
+
+.modal-form-footer-buttons > .submit-button{
+  background-color: var(--edit-button);
+  border: 1px solid var(--edit-button-border);
+  width: 90px;
+  height: 30px;
+
+  margin-left: 10px;
+}
+
+.modal-form-footer-buttons >.cancel-button:hover, .modal-form-footer-buttons >.submit-button:hover{
+  cursor: pointer;
 }

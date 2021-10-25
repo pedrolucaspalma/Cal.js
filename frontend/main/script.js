@@ -8,7 +8,7 @@ const userId = {
 
 const appendUserNameToGreeting = () => {
   const h2 = document.querySelector("#user-pannel-greeting");
-  h2.innerHTML = "Hello " + localStorage.userName;
+  h2.innerHTML = "Hello, " + localStorage.userName;
 };
 
 appendUserNameToGreeting();
@@ -247,6 +247,7 @@ const submitFormForEdition = (modal, eventId) =>{
       !formData.beginningDate |
       !formData.endingDate
     ) {
+      e.preventDefault();
       fieldMissing.hidden = false;
       return;
     }
