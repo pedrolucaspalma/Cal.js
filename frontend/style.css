@@ -224,9 +224,9 @@ a{
   width: 80px;
 }
 
-.sign-in-button{
+.sign-in-button, .register-button{
   margin: 10px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 /* Hidden H2 tags */
