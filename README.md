@@ -134,4 +134,6 @@ Event listing is made by sending a request to the server with the `GET` method a
 
 ###### Adding a new event
 
-When the user clicks on the "Add new event" button, it calls a `openModalForInsertion()` function that opens up a modal containing a form. On submition, the data the form will be sent to a 
+When the user clicks on the "Add new event" button, it calls a `openModalForInsertion()` function that simply opens up a modal containing a form. It also calls a `submitFormForInsertion()`, that adds uses `addEventListener` to the form and waits for the user to click on the green "Submit" button on the modal. On click, it collects all the information put on the form by the user, stores in the `formData` object and passes this object to `addEvent()` as a paramater. Add event simply passes this object again to the `sendEventInsertionRequest()`, that uses `fetch()` to send the object containing the new event to the server to handle with the `createEventController`. The page is then reloaded, and the user can now see the new event on the event list.
+
+###### Editing an existing event
