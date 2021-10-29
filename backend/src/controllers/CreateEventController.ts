@@ -6,7 +6,7 @@ class CreateEventController {
 
     const { description, beginningDate, endingDate} = req.body;
 
-    const relatedUserId = parseInt(req.body.relatedUserId)
+    const relatedUserId = req.userId
 
     const createEventService = new CreateEventService();
 

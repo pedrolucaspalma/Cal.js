@@ -1,9 +1,8 @@
 import { Router } from "express";
 
-import { CreateUserController } from "./controllers/CreateUserController";
-import { CreateEventController } from "./controllers/CreateEventController";
+import { CreateUserController } from "./controllers/CreateUserController"; //não usa
+import { CreateEventController } from "./controllers/CreateEventController"; // ajustado
 import { AuthenticateUserController } from "./controllers/AuthenticateUserController";
-
 import { ListEventsController } from "./controllers/ListEventsController";
 import { DeleteEventController } from "./controllers/DeleteEventController";
 import { UpdateEventController } from "./controllers/UpdateEventController";
@@ -19,15 +18,13 @@ const deleteEventController = new DeleteEventController();
 const updateEventController = new UpdateEventController();
 
 router.post("/users", createUserController.handle);
-router.post("/events", createEventController.handle);
+router.post("/events", ensureAuthenticated, createEventController.handle);
 router.post("/login", authenticateUserController.handle);
+router.post("/updateevents", updateEventController.handle);
 
-
-router.get("/test", ensureAuthenticated)
 router.get("/userevents/:relatedUserId", listEventsController.handle);
 
 router.delete("/events/:id", deleteEventController.handle);
 
-router.post("/updateevents", updateEventController.handle);
 
 export { router };
