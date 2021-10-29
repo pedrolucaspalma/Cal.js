@@ -4,7 +4,7 @@ import { CreateUserController } from "./controllers/CreateUserController"; //nã
 import { CreateEventController } from "./controllers/CreateEventController"; // ajustado
 import { AuthenticateUserController } from "./controllers/AuthenticateUserController"; //ajustado
 import { ListEventsController } from "./controllers/ListEventsController"; //ajustado
-import { DeleteEventController } from "./controllers/DeleteEventController";
+import { DeleteEventController } from "./controllers/DeleteEventController"; //ajustado
 import { UpdateEventController } from "./controllers/UpdateEventController";
 import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 
@@ -24,7 +24,7 @@ router.post("/updateevents", updateEventController.handle);
 
 router.get("/userevents/", ensureAuthenticated, listEventsController.handle);
 
-router.delete("/events/:id", deleteEventController.handle);
+router.delete("/events/:id", ensureAuthenticated, deleteEventController.handle);
 
 
 export { router };
