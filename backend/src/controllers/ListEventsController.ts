@@ -3,7 +3,7 @@ import { ListEventsService } from "../services/ListEventsService";
 
 class ListEventsController {
   async handle(req: Request, res: Response) {
-    const relatedUserId: number = parseInt(req.params['relatedUserId'])
+    const relatedUserId:number = req.userId
 
     const listEventsService = new ListEventsService();
 
