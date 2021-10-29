@@ -5,7 +5,7 @@ class UpdateEventController{
     async handle(req: Request, res: Response){
         const { description, beginningDate, endingDate } = req.body;
 
-        const relatedUserId = parseInt(req.body.relatedUserId)
+        const relatedUserId = req.userId
 
         const eventId = parseInt(req.body.eventId)
 
