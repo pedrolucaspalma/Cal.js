@@ -7,6 +7,7 @@ import { AuthenticateUserController } from "./controllers/AuthenticateUserContro
 import { ListEventsController } from "./controllers/ListEventsController";
 import { DeleteEventController } from "./controllers/DeleteEventController";
 import { UpdateEventController } from "./controllers/UpdateEventController";
+import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 
 const router = Router();
 
@@ -21,6 +22,8 @@ router.post("/users", createUserController.handle);
 router.post("/events", createEventController.handle);
 router.post("/login", authenticateUserController.handle);
 
+
+router.get("/test", ensureAuthenticated)
 router.get("/userevents/:relatedUserId", listEventsController.handle);
 
 router.delete("/events/:id", deleteEventController.handle);

@@ -20,9 +20,9 @@ class AuthenticateUserService {
     });
 
     const token = sign({
-      email: user.email
+      id: user.id
     },
-    "053591c1536caa4a50fc7fa3f6361c62",{
+    "dfbbea8a502ceaebb95ad72d7b8866ac",{
       subject: user.id.toString(),
       expiresIn: "1d"
     });
