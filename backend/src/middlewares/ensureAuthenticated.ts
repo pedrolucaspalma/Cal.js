@@ -24,8 +24,6 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
 
         request.userId = convertedId;
 
-        console.log(request.userId)
-
         return next();
 
     } catch(err){
