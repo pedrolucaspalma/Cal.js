@@ -1,8 +1,7 @@
 const eventsList = document.querySelector(".activities-list");
-
-const userId = {
-  relatedUserId: localStorage.userId,
-};
+let myHeaders = new Headers();
+myHeaders.append('Content-type', 'application/json');
+myHeaders.append('Authorization', `Bearer ${localStorage.userToken}`)
 
 // ____Insert user name to greeting H2 tag
 
@@ -28,9 +27,7 @@ const sendEventInsertionRequest = async (Event) => {
 };
 
 const requestUserEvents = async () => {
-  let myHeaders = new Headers();
-  myHeaders.append('Content-type', 'application/json');
-  myHeaders.append('Authorization', `Bearer ${localStorage.userToken}`)
+
 
   const res = await fetch(
     `http://localhost:3000/userevents`,
@@ -49,6 +46,7 @@ const sendDeleteRequest = async (Event) => {
   const res = await fetch(`http://localhost:3000/events/${Event.id}`, {
     method: "DELETE",
     body: JSON.stringify(Event),
+    headers: myHeaders
   });
   const deletedEvent = await res.json();
   return deletedEvent;
@@ -68,7 +66,7 @@ const sendEventEditionRequest = async(Event)=>{
 
 // ____Appending Events to EventList on page Reload
 
-const insertUserEventsToEventsList = requestUserEvents(userId).then(
+const insertUserEventsToEventsList = requestUserEvents().then(
   (userEvents) => {
     for (let i = 0; i < userEvents.length; i++) {
       const Event = {
@@ -95,7 +93,7 @@ const insertUserEventsToEventsList = requestUserEvents(userId).then(
 
       newEditButton.setAttribute(
         "onclick",
-        `openModalForEdition("${Event.id}", "${Event.description}", "${Event.beginningDate}", "${Event.endingDate}", "${localStorage.userId}")`
+        `openModalForEdition("${Event.id}", "${Event.description}", "${Event.beginningDate}", "${Event.endingDate}")`
       );
       newRemoveButton.setAttribute("onclick", `removeEvent(${Event.id})`);
 
