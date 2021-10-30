@@ -55,9 +55,7 @@ const sendDeleteRequest = async (Event) => {
 const sendEventEditionRequest = async(Event)=>{
   const res = await fetch("http://localhost:3000/updateevents", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: myHeaders,
     body: JSON.stringify(Event),
   });
 
@@ -206,7 +204,6 @@ const insertUserEventDataInModal = (userEvent, modal) => {
   eventBeginningDate.value = userEvent.beginningDate;
   eventEndingDate.value = userEvent.endingDate;
 
-  //continuar no submitFormForEdition() passarUserEvent pq ele tem os ids
 };
 
 const closeModal = () => {
