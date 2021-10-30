@@ -41,7 +41,7 @@ Event entitie represents a single Event, and it has the following properties:
 
 The backend can be illustrated as:
 
-server.ts <-> routes.ts <-> someController.ts <-> someService.ts <-> Prisma Client <-> database.sqlite
+server.ts <-> routes.ts <-> <-> ensureAuthenticated <-> someController.ts <-> someService.ts <-> Prisma Client <-> database.sqlite
 
 In the following sections I will describe each part of the diagram above.
 
@@ -50,6 +50,10 @@ The server handles the HTPP request that comes from the client (frontend HTML/js
 
 #### routes.ts
 Routes.ts takes the request and calls the appropriate controller to handle the request.
+
+#### ensureAuthenticated.ts
+
+This middleware receives a JWT on the "Authorization" header and makes a verification on wether the token is valid or not. If it is, the middleware appends the user's ID (required by some controllers to make their operations) to the request and calls the controller to handle the request.
 
 #### someController.ts
 In a general way, the controller is responsible for taking the data inside the request body, storing it inside some variables, and call the appropriate service while sending these variables to it as arguments.
@@ -109,27 +113,22 @@ Once the request is submited and no errors are thrown, the user is redirected to
 
 ##### Login
 
-User login is made in a similar way, in the sense that form element values are sent using `POST` request (endpoint `/login`). In this case, if the login is succssesfull the server sends the client a response containing the user's Id on the database, that is stored in localStorage for future usage. If no errors are thrown, the user is redirected to Main page.
-
-Later on I pretend to insert JWT authentication to this. It should work like this:
-- The `/login` route controller/service will now also return a JWT on the response body.
-- Once the token is received on the client via the server response, it is stored in localStorage or cookies.
-- A new middleware will be included (ensureUserAuthenticated). ensureUserAuthenticated will be added in each existing route that uses a main functionality (Creating new events, editing events and listing events), being called before the main functionality controller. 
-- This middleware will get a JWT from the request sent by the client and check if the token is valid. If it isn't, it throws an error that should redirect the client to the login page. 
-- If it is valid, it calls the next controller to receive handle the request.
+User login is made in a similar way, in the sense that form element values are sent using `POST` request (endpoint `/login`). In this case, if the login is succssesfull the server sends the client a response containing the user's JWT, wich will be stored in localStorage for future usage. If no errors are thrown, the user is redirected to Main page.
 
 ##### Main Page
 
+From now on, every request sent to the server will have a "Authorization" header, containing "Bearer + (user's JWT)". This is much more secure than the last solution I implemented for the login, and is the only information (besides the user's registered name) that is saved on localStorage now.
+
 ###### On Login/Logout
 
-- After the login, the app will have the user's Name and database ID stored on localStorage.
+- After the login, the app will have the user's Name and JWT stored on localStorage.
     - The user's name will only be used to be inserted in the greeting `h2` tag.
-    - The user's database ID will be sent on every request to the server with the `GET` method and `/userevents/` endpoint, being passed on the URL. I will explain more of this request on the next section.
+    - As stated in the previous section, the user's JWT is sent on every request made to the server.
 - The logout button simply clears the user's data on localStorage and redirect's him back to login page.
 
 ###### Listing events
 
-Event listing is made by sending a request to the server with the `GET` method and `/userevents/` endpoint, being passed on the URL. This returns a response containing a list of events and each events respective ID. The events are then appended to the event list with Javascript DOM, and the page is reloaded. 
+Event listing is made by sending a request to the server with the `GET` method and `/userevents/` endpoint. This returns a response containing a list of events and each events respective ID. The events are then appended to the event list with Javascript DOM, and the page is reloaded. 
 
 Alongside each event there is a green and a red button. The edit button contains a `onclick` attribute with a call to the `openModalForEdition` function, and passing all the event's information (including its Id) as paramaters. The remove button calls has a `onclick` attribute with a call to the `removeEvent`, passing only the event Id as a argument.
 
