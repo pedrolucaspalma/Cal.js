@@ -19,6 +19,7 @@ const sendEventInsertionRequest = async (Event) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.userToken}`
     },
     body: JSON.stringify(Event),
   });
@@ -26,12 +27,17 @@ const sendEventInsertionRequest = async (Event) => {
   const insertedEvent = await res.json();
 };
 
-const requestUserEvents = async (userId) => {
+const requestUserEvents = async () => {
+  let myHeaders = new Headers();
+  myHeaders.append('Content-type', 'application/json');
+  myHeaders.append('Authorization', `Bearer ${localStorage.userToken}`)
+
   const res = await fetch(
-    `http://localhost:3000/userevents/${userId.relatedUserId}`,
+    `http://localhost:3000/userevents`,
     {
       method: "GET",
-    }
+      headers: myHeaders
+    },
   );
 
   const userEvents = await res.json();
@@ -278,7 +284,7 @@ const clearEventList = () => {
 
 const logout = () => {
   localStorage.userName = "";
-  localStorage.userId = "";
+  localStorage.userToken = "";
 
   clearEventList();
 
