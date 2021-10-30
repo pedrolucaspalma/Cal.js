@@ -36,7 +36,7 @@ const login = async (formData) => {
   const body = await res.json();
 
   const user = {
-    id: body.id,
+    token: body.token,
     name: body.name
   }
   saveLoggedUser(user);
@@ -44,7 +44,11 @@ const login = async (formData) => {
 
 const saveLoggedUser = (user) => {
   localStorage.userName = user.name;
-  localStorage.userId = user.id;
+  localStorage.userToken = user.token;
+
+  console.log(localStorage.userName)
+  console.log(localStorage.userToken)
+
   openMainAppPage();
 };
 
